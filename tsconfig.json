@@ -14,7 +14,9 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "rootDir": "./",
+    "baseUrl": "src"
   },
   "include": [".eslintrc.cjs", "src"],
   "references": [{ "path": "./tsconfig.vite.json" }]
