@@ -6,13 +6,9 @@ function App() {
   return (
     <div className="font-bold flex justify-center">
       Hello, Zero Waste Shop Map!
-      <p>
-        {`count: ${count}`}
-      </p>
-      <button
-        onClick={() => setCount(count => count + 1)}
-      >
-        {`(+)`}
+      <p>{`count: ${count}`}</p>
+      <button type="button" onClick={() => setCount((value) => value + 1)}>
+        (+)
       </button>
     </div>
   );

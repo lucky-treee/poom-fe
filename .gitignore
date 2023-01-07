@@ -7,9 +7,4 @@ dist
 # @vitjs/vit temporary directory
 .vit
 
-
-
-
-
-
 .DS_Store
