@@ -16,8 +16,8 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "rootDir": "./",
-    "baseUrl": "src"
+    "baseUrl": "src",
   },
-  "include": [".eslintrc.cjs", "src"],
-  "references": [{ "path": "./tsconfig.vite.json" }]
+  "include": [".eslintrc.cjs", "vite.config.ts", "tailwind.config.cjs", "postcss.config", "src"],
+  "references": [{ "path": "tsconfig.vite.json" }]
 }
