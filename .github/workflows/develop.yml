@@ -20,6 +20,9 @@ jobs:
           
       - name: Install Dependencies
         run: yarn    
+      
+      - name: Check lint
+        run: yarn lint
 
   build:
     runs-on: ubuntu-latest
