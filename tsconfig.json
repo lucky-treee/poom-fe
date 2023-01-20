@@ -15,8 +15,10 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "rootDir": "./",
     "baseUrl": "src",
+    "paths": {
+      "src/*": ["src/*"]
+    }
   },
   "include": [".eslintrc.cjs", "vite.config.ts", "tailwind.config.cjs", "postcss.config", "src"],
   "references": [{ "path": "tsconfig.vite.json" }]
