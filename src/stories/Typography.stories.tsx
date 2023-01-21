@@ -1,11 +1,11 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { ComponentStory } from '@storybook/react';
 import Typography from 'components/Typography';
 
 export default {
   title: 'Typography',
   component: Typography,
-} as ComponentMeta<typeof Typography>;
+};
 
 export const EnglishTitle: ComponentStory<typeof Typography> = () => (
   <Typography type="title">English Title Component</Typography>
