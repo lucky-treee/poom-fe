@@ -1,5 +1,6 @@
 import React from 'react';
 import { ComponentStory } from '@storybook/react';
+import 'index.css';
 
 export default {
   title: 'Color',
