@@ -3,24 +3,5 @@
 @tailwind utilities;
 
 * {
-  font-family: 'Noto Sans KR', 'Roboto', sans-serif;
+  font-family: 'Noto Sans KR', 'Roboto' sans-serif;
 }
-
-/* 한글 범위 폰트 설정 */
-@font-face {
-  font-family: 'Noto Sans KR', sans-serif;
-  unicode-range: U+AC00-D7A3;
-}
-
-/* 숫자 범위 폰트 설정 */
-@font-face {
-  font-family: 'Noto Sans KR', sans-serif;
-  unicode-range: U+0030-0039;
-}
-
-/* 영어 범위 폰트 설정 */
-@font-face {
-  font-family: 'Roboto', sans-serif;
-  unicode-range: U+0061-007A;
-}
-
