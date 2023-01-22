@@ -14,6 +14,12 @@ jobs:
         with:
           ref: beta
           
+      - name: Create .env
+        uses: SpicyPizza/create-envfile@v1.3
+        with:
+          envkey_VITE_KAKAO_API_KEY: ${{ secrets.VITE_KAKAO_API_KEY }}
+          file_name: .env
+
       - name: Install Dependencies
         run: yarn
 
