@@ -8,3 +8,4 @@ dist
 .vit
 
 .DS_Store
+.env
