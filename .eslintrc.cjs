@@ -10,8 +10,8 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
+    'plugin:storybook/recommended',
   ],
-
   overrides: [],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -21,8 +21,28 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint'],
   rules: {
-    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     'react/react-in-jsx-scope': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'react/function-component-definition': 'off',
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: true,
+      },
+    ],
+    'import/prefer-default-export': 'off',
+    'no-restricted-imports': [
+      'error',
+      {
+        patterns: ['.*', '..*'],
+      },
+    ],
+    'no-restricted-syntax': [
+      'error',
+      {
+        selector: 'ImportNamespaceSpecifier',
+      },
+    ],
     'no-console': 'error',
   },
 };
