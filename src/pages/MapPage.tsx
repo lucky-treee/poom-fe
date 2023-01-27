@@ -1,10 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useGeolocated } from 'react-geolocated';
-import { Map, MapMarker } from 'react-kakao-maps-sdk';
+import { Map } from 'react-kakao-maps-sdk';
+import UserMarker from 'components/map/UserMarker';
+import LocateButton from 'components/map/LocateButton';
+import { LocationType } from 'models/Location';
 
 const MapPage: React.FC = () => {
-  const { coords, isGeolocationAvailable, isGeolocationEnabled } =
-    useGeolocated();
+  const { coords, isGeolocationAvailable, isGeolocationEnabled, getPosition } =
+    useGeolocated({ watchPosition: true });
+
+  const [centerLocation, setCenterLocation] = useState<LocationType>({
+    lat: 0,
+    lng: 0,
+  });
+
+  const [userLocation, setUserLocation] = useState<LocationType>({
+    lat: 0,
+    lng: 0,
+  });
+
+  const isCenterLocationInitialized = centerLocation.lat !== 0;
+
+  useEffect(() => {
+    if (coords) {
+      setUserLocation({ lat: coords.latitude, lng: coords.longitude });
+      if (!isCenterLocationInitialized) {
+        setCenterLocation({ lat: coords.latitude, lng: coords.longitude });
+      }
+    }
+  }, [coords, isCenterLocationInitialized]);
 
   if (!isGeolocationAvailable) {
     // TODO: Geolocation API를 지원하지 않는 브라우저에 대한 처리
@@ -16,16 +40,33 @@ const MapPage: React.FC = () => {
     return <div>Geolocation is not enabled</div>;
   }
 
-  const { latitude: lat, longitude: lng } = coords || {
-    latitude: 0,
-    longitude: 0,
+  const handleMapCenterChanged = (map: kakao.maps.Map) => {
+    setCenterLocation({
+      lat: map.getCenter().getLat(),
+      lng: map.getCenter().getLng(),
+    });
+  };
+
+  const handleLocateButtonClick = () => {
+    getPosition();
+    setCenterLocation({ ...userLocation });
   };
 
   return (
     <div className="w-screen h-screen">
-      <Map className="w-full h-full" center={{ lat, lng }} level={3}>
-        <MapMarker position={{ lat, lng }} />
+      <Map
+        isPanto
+        className="w-full h-full"
+        center={centerLocation}
+        level={3}
+        onCenterChanged={handleMapCenterChanged}
+      >
+        <UserMarker userLocation={userLocation} />
       </Map>
+      <LocateButton
+        onClick={handleLocateButtonClick}
+        className="absolute bottom-4 right-4 z-50"
+      />
     </div>
   );
 };
