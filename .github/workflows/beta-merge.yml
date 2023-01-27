@@ -48,7 +48,7 @@ jobs:
           AWS_DEFAULT_REGION: ap-northeast-2
           AWS_S3: ${{ secrets.BETA_DEPLOY_AWS_S3 }}
         run: |
-          aws s3 sync --region ap-northeast-2 ./ $AWS_S3 --acl public-read --follow-symlinks --delete
+          aws s3 sync --region ap-northeast-2 ./ $AWS_S3 --follow-symlinks --delete
       
       - name: Invalidate CloudFront Cache
         env:
