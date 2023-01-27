@@ -65,7 +65,7 @@ const MapPage: React.FC = () => {
       </Map>
       <LocateButton
         onClick={handleLocateButtonClick}
-        className="absolute bottom-4 right-4 z-50"
+        className="absolute bottom-[70px] right-4 z-50"
       />
     </div>
   );
