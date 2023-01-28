@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from 'App';
 import 'index.css';
+import 'utils/i18n';
 import { worker } from 'mocks/browser';
 
 if (import.meta.env.MODE === 'development') {

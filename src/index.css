@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 * {
-  font-family: 'Noto Sans KR', 'Roboto' sans-serif;
+  font-family: 'Noto Sans KR', Roboto, sans-serif;
 }
