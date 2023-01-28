@@ -21,6 +21,13 @@
       "src/*": ["src/*"]
     }
   },
-  "include": [".eslintrc.cjs", "vite.config.ts", "tailwind.config.cjs", "postcss.config", "src"],
+  "include": [
+    ".eslintrc.cjs",
+    "vite.config.ts",
+    "tailwind.config.cjs",
+    "postcss.config",
+    "src",
+    "public/mockServiceWorker.js"
+  ],
   "references": [{ "path": "tsconfig.vite.json" }]
 }
