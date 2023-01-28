@@ -4,7 +4,7 @@ import App from 'App';
 import 'index.css';
 import { worker } from 'mocks/browser';
 
-if (import.meta.env.VITE_NODE_ENV === 'development') {
+if (import.meta.env.MODE === 'development') {
   worker.start();
 }
 
