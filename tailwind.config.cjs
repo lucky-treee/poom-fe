@@ -17,6 +17,7 @@ module.exports = {
       ...colors,
       primary: '#53B860',
       'primary-hover': '#4FA55A',
+      'white-hover': 'rgba(0, 0, 0, 0.05)',
       secondary: '#333333',
       text: '#333333',
       error: colors.red[500],
