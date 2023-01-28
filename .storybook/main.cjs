@@ -19,7 +19,7 @@ module.exports = {
   },
   async viteFinal(config) {
     return mergeConfig(config, {
-      plugins: [tsconfigPaths(), svgr({ exportAsDefault: true })],
+      plugins: [tsconfigPaths(), svgr()],
     });
   },
 };

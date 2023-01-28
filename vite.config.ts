@@ -5,10 +5,5 @@ import VitePluginHtmlEnv from 'vite-plugin-html-env';
 import svgr from 'vite-plugin-svgr';
 
 export default defineConfig({
-  plugins: [
-    react(),
-    tsconfigpaths(),
-    VitePluginHtmlEnv(),
-    svgr({ exportAsDefault: true }),
-  ],
+  plugins: [react(), tsconfigpaths(), VitePluginHtmlEnv(), svgr()],
 });

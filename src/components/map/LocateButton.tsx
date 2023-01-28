@@ -1,5 +1,5 @@
 import React from 'react';
-import LocateIcon from 'assets/Locate.svg';
+import { ReactComponent as LocateIcon } from 'assets/Locate.svg';
 
 type LocateButtonProps = {
   onClick: () => void;
@@ -15,7 +15,6 @@ const LocateButton: React.FC<LocateButtonProps> = (props) => {
       onClick={onClick}
       className={`rounded-full outline-none border-none ${className}`}
     >
-      <div className="absolute rounded-full hover:bg-white-hover w-[42px] h-[42px]" />
       <LocateIcon />
     </button>
   );
