@@ -17,11 +17,11 @@ const Navigator: React.FC<NavigatorProps> = (props) => {
 
   const navigate = useNavigate();
 
-  const goMap = () => {
+  const handleMapBtnClick = () => {
     navigate(PathName.MAP_PAGE);
   };
 
-  const goProfile = () => {
+  const handleProfileBtnClick = () => {
     navigate(PathName.PROFILE_PAGE);
   };
 
@@ -41,7 +41,7 @@ const Navigator: React.FC<NavigatorProps> = (props) => {
           className={`w-full h-13.5 bg-white ${
             menu === 'map' ? 'text-primary' : 'text-placeholder'
           }`}
-          onClick={goMap}
+          onClick={handleMapBtnClick}
         >
           <MapIcon selected={menu === 'map'} />
           <Typography type="caption">{t('map-navigator-menu-text')}</Typography>
@@ -52,7 +52,7 @@ const Navigator: React.FC<NavigatorProps> = (props) => {
           className={`w-full h-13.5 bg-white ${
             menu === 'profile' ? 'text-primary' : 'text-placeholder'
           }`}
-          onClick={goProfile}
+          onClick={handleProfileBtnClick}
         >
           <ProfileIcon selected={menu === 'profile'} />
           <Typography type="caption">
