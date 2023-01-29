@@ -1,30 +1,31 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PathName from 'constants/PathName';
-import AddShopIcon from 'assets/AddShopIcon';
 import NavigatorCurve from 'assets/NavigatorCurve';
+import { ReactComponent as AddShopIcon } from 'assets/AddShopIcon.svg';
 import MapIcon from 'assets/MapIcon';
 import ProfileIcon from 'assets/ProfileIcon';
 import { useNavigate } from 'react-router-dom';
-// eslint-disable-next-line no-restricted-imports
-import Typography from './Typography';
+import { useTranslation } from 'react-i18next';
+import Typography from 'components/Typography';
 
-type ColorProps = {
-  type: 'map' | 'profile';
+type NavigatorProps = {
+  menu: 'map' | 'profile';
 };
 
-// 타입 지정 필요
-const Navigator: React.FC<ColorProps> = (props) => {
-  const { type } = props;
+const Navigator: React.FC<NavigatorProps> = (props) => {
+  const { menu } = props;
 
   const navigate = useNavigate();
 
   const goMap = () => {
-    navigate(`${PathName.MAP_PAGE}`);
+    navigate(PathName.MAP_PAGE);
   };
 
   const goProfile = () => {
-    navigate(`${PathName.PROFILE_PAGE}`);
+    navigate(PathName.PROFILE_PAGE);
   };
+
+  const { t } = useTranslation();
 
   return (
     <nav className="absolute bottom-0 flex justify-center w-full z-10 ">
@@ -34,31 +35,29 @@ const Navigator: React.FC<ColorProps> = (props) => {
       >
         <AddShopIcon />
       </button>
-      <div className="flex justify-center mt-7 btn-container w-full h-13.5 drop-shadow-md-reverse ">
+      <div className="flex justify-center mt-7 w-full h-13.5 drop-shadow-md-reverse ">
         <button
           type="button"
           className={`w-full h-13.5 bg-white ${
-            type === 'map' ? 'text-primary' : 'text-placeholder'
+            menu === 'map' ? 'text-primary' : 'text-placeholder'
           }`}
           onClick={goMap}
         >
-          <MapIcon
-            className={type === 'map' ? 'fill-primary' : 'fill-placeholder'}
-          />
-          <Typography type="caption">지도</Typography>
+          <MapIcon selected={menu === 'map'} />
+          <Typography type="caption">{t('map-navigator-menu-text')}</Typography>
         </button>
         <NavigatorCurve />
         <button
           type="button"
           className={`w-full h-13.5 bg-white ${
-            type === 'profile' ? 'text-primary' : 'text-placeholder'
+            menu === 'profile' ? 'text-primary' : 'text-placeholder'
           }`}
           onClick={goProfile}
         >
-          <ProfileIcon
-            className={type === 'profile' ? 'fill-primary' : 'fill-placeholder'}
-          />
-          <Typography type="caption">마이페이지</Typography>
+          <ProfileIcon selected={menu === 'profile'} />
+          <Typography type="caption">
+            {t('profile-navigator-menu-text')}
+          </Typography>
         </button>
       </div>
     </nav>

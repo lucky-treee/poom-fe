@@ -55,7 +55,7 @@ const MapPage: React.FC = () => {
 
   return (
     <div className="w-screen h-screen">
-      <Navigator type="map" />
+      <Navigator menu="map" />
       <Map
         isPanto
         className="w-full h-full"

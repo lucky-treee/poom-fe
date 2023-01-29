@@ -5,7 +5,7 @@ const ProfilePage: React.FC = () => {
   return (
     <div>
       <div>Profile Page</div>
-      <Navigator type="profile" />
+      <Navigator menu="profile" />
     </div>
   );
 };
