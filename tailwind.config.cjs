@@ -12,12 +12,15 @@ module.exports = {
           '0 -2px 2px rgba(0, 0, 0, 0.06)',
         ],
       },
+      spacing: {
+        13: '3.25rem', // 52px
+        13.5: '3.375rem', // 54px
+      },
     },
     colors: {
       ...colors,
       primary: '#53B860',
       'primary-hover': '#4FA55A',
-      'white-hover': 'rgba(0, 0, 0, 0.05)',
       secondary: '#333333',
       text: '#333333',
       error: colors.red[500],

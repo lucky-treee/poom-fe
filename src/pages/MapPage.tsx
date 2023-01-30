@@ -4,6 +4,7 @@ import { Map } from 'react-kakao-maps-sdk';
 import UserMarker from 'components/map/UserMarker';
 import LocateButton from 'components/map/LocateButton';
 import { LocationType } from 'models/Location';
+import Navigator from 'components/Navigator';
 
 const MapPage: React.FC = () => {
   const { coords, isGeolocationAvailable, isGeolocationEnabled, getPosition } =
@@ -54,6 +55,7 @@ const MapPage: React.FC = () => {
 
   return (
     <div className="w-screen h-screen">
+      <Navigator menu="map" />
       <Map
         isPanto
         className="w-full h-full"
