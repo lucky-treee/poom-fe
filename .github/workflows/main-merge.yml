@@ -26,6 +26,9 @@ jobs:
       - name: Build
         run: yarn build
       
+      - name: Versioning
+        run: yarn release
+        
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:

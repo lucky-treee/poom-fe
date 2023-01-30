@@ -1,0 +1,11 @@
+{
+  "branches": [
+    { "name": "main" },
+    { "name": "beta", "prerelease": "beta" },
+    { "name": "(feature|bugfix)/**", "prerelease": "alpha.${name.replace(/^(feature|bugfix)\\/issue/g, '')}" }
+  ],
+  "tagFormat": "${version}",
+  "plugins": [
+    "@semantic-release/commit-analyzer"
+  ]
+}
