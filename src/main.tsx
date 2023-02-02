@@ -6,7 +6,9 @@ import 'utils/i18n';
 import { worker } from 'mocks/browser';
 
 if (import.meta.env.MODE === 'development') {
-  worker.start();
+  worker.start({
+    onUnhandledRequest: 'bypass',
+  });
 }
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
