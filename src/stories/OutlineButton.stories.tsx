@@ -20,7 +20,7 @@ export const Small: ComponentStory<'div'> = () => (
 );
 
 export const Hover: ComponentStory<'div'> = () => (
-  <div className="flex justify-center items-center bg-[#F5F5F5] border-text border py-1 rounded-md">
+  <div className="flex justify-center items-center bg-[#F5F5F5] border-text border py-2 rounded-md">
     Button Text
   </div>
 );
