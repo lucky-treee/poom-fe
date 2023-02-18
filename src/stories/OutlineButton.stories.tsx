@@ -1,35 +1,21 @@
 import React from 'react';
 import { ComponentStory } from '@storybook/react';
+import OutlineButton from 'components/OutlineButton';
 import 'index.css';
 
 export default {
   title: 'Outline Button',
-  component: 'div',
+  component: 'button',
 };
 
 export const Default: ComponentStory<'div'> = () => (
-  <button
-    type="button"
-    className="flex justify-center items-center bg-white border-[#c5c5c5] border p-2 rounded-md"
-  >
+  <OutlineButton type="default" width="10rem">
     Button Text
-  </button>
+  </OutlineButton>
 );
 
 export const Small: ComponentStory<'div'> = () => (
-  <button
-    type="button"
-    className="flex justify-center items-center bg-white border-[#c5c5c5] border py-1 px-2 rounded-md"
-  >
+  <OutlineButton type="small" width="10rem">
     Button Text
-  </button>
-);
-
-export const Hover: ComponentStory<'div'> = () => (
-  <button
-    type="button"
-    className="flex justify-center items-center bg-[#F5F5F5] border-text border p-2 rounded-md"
-  >
-    Button Text
-  </button>
+  </OutlineButton>
 );
