@@ -1,32 +1,21 @@
 import React from 'react';
 import { ComponentStory } from '@storybook/react';
+import InputBox from 'components/InputBox';
 import 'index.css';
 
 export default {
   title: 'Input Box',
-  component: 'div',
+  component: 'input',
 };
 
 export const Default: ComponentStory<'div'> = () => (
-  <input
-    type="text"
-    className="bg-white border-[#c5c5c5] border text-placeholder px-4 py-3 rounded-md"
-    placeholder="Placeholder"
-  />
+  <InputBox type="default" placeholder="Placeholder" />
 );
 
 export const Active: ComponentStory<'div'> = () => (
-  <input
-    type="text"
-    className="bg-white border-sky-500 border text-placeholder px-4 py-3 rounded-md"
-    placeholder="Placeholder"
-  />
+  <InputBox type="active" placeholder="Placeholder" />
 );
 
 export const Error: ComponentStory<'div'> = () => (
-  <input
-    type="text"
-    className="bg-white border-red-500 border text-placeholder px-4 py-3 rounded-md"
-    placeholder="Placeholder"
-  />
+  <InputBox type="error" placeholder="Placeholder" />
 );
