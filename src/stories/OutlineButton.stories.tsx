@@ -8,19 +8,28 @@ export default {
 };
 
 export const Default: ComponentStory<'div'> = () => (
-  <div className="flex justify-center items-center bg-white hover:bg-[#F5F5F5] border-[#c5c5c5] hover:border-text border py-2 rounded-md">
+  <button
+    type="button"
+    className="flex justify-center items-center bg-white border-[#c5c5c5] border p-2 rounded-md"
+  >
     Button Text
-  </div>
+  </button>
 );
 
 export const Small: ComponentStory<'div'> = () => (
-  <div className="flex justify-center items-center bg-white hover:bg-[#F5F5F5] border-[#c5c5c5] hover:border-text border py-1 rounded-md">
+  <button
+    type="button"
+    className="flex justify-center items-center bg-white border-[#c5c5c5] border py-1 px-2 rounded-md"
+  >
     Button Text
-  </div>
+  </button>
 );
 
 export const Hover: ComponentStory<'div'> = () => (
-  <div className="flex justify-center items-center bg-[#F5F5F5] border-text border py-2 rounded-md">
+  <button
+    type="button"
+    className="flex justify-center items-center bg-[#F5F5F5] border-text border p-2 rounded-md"
+  >
     Button Text
-  </div>
+  </button>
 );

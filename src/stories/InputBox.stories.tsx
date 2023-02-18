@@ -8,19 +8,25 @@ export default {
 };
 
 export const Default: ComponentStory<'div'> = () => (
-  <div className="bg-white border-[#c5c5c5] border text-placeholder px-4 py-3 rounded-md">
-    Placeholder
-  </div>
+  <input
+    type="text"
+    className="bg-white border-[#c5c5c5] border text-placeholder px-4 py-3 rounded-md"
+    placeholder="Placeholder"
+  />
 );
 
 export const Active: ComponentStory<'div'> = () => (
-  <div className="bg-white border-sky-500 border text-placeholder px-4 py-3 rounded-md">
-    Placeholder
-  </div>
+  <input
+    type="text"
+    className="bg-white border-sky-500 border text-placeholder px-4 py-3 rounded-md"
+    placeholder="Placeholder"
+  />
 );
 
 export const Error: ComponentStory<'div'> = () => (
-  <div className="bg-white border-red-500 border text-placeholder px-4 py-3 rounded-md">
-    Placeholder
-  </div>
+  <input
+    type="text"
+    className="bg-white border-red-500 border text-placeholder px-4 py-3 rounded-md"
+    placeholder="Placeholder"
+  />
 );
