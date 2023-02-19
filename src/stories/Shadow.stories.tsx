@@ -1,5 +1,4 @@
 import React from 'react';
-import { ComponentStory } from '@storybook/react';
 import 'index.css';
 
 export default {
@@ -24,14 +23,14 @@ const Card: React.FC<CardProps> = (props) => {
   );
 };
 
-export const DropShadow: ComponentStory<'div'> = () => (
+export const DropShadow = () => (
   <Card className="drop-shadow">Drop Shadow</Card>
 );
 
-export const DropShadowMd: ComponentStory<'div'> = () => (
+export const DropShadowMd = () => (
   <Card className="drop-shadow-md">Drop Shadow Md</Card>
 );
 
-export const DropShadowMdReverse: ComponentStory<'div'> = () => (
+export const DropShadowMdReverse = () => (
   <Card className="drop-shadow-md-reverse">Drop Shadow Md Reverse</Card>
 );
