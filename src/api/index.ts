@@ -11,4 +11,4 @@ const client = () => {
   return instance;
 };
 
-export default client;
+export default client();
