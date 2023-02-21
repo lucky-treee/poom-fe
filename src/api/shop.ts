@@ -1,16 +1,5 @@
 import client from 'api';
-
-// 아직 정보 없음
-interface Shop {
-  id: number;
-}
-
-interface ShopResponse {
-  status: number;
-  code: number;
-  message: string;
-  result: Shop[];
-}
+import { ShopResponse } from 'models/response';
 
 export const fetchShopList = (
   maxLat: number,
