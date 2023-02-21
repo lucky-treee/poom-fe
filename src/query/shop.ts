@@ -1,11 +1,14 @@
-import { Coordinate, getShopByCoordinate } from 'api/shop';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
+import { fetchShopList } from 'api/shop';
 
-export const useGetShopByCoordinate = (coordinate: Coordinate) => {
-  const { data } = useQuery({
-    queryKey: ['shop', coordinate],
-    queryFn: () => getShopByCoordinate(coordinate),
+export const useShopListQuery = (
+  maxLat: number,
+  minLat: number,
+  maxLng: number,
+  minLng: number
+) => {
+  return useQuery({
+    queryKey: ['shopList', maxLat, minLat, maxLng, minLng],
+    queryFn: () => fetchShopList(maxLat, minLat, maxLng, minLng),
   });
-
-  return { data };
 };
