@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 * {
-  font-family: 'Noto Sans KR', Roboto, sans-serif;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -webkit-tap-highlight-color: transparent;

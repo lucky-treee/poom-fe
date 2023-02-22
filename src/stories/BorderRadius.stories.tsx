@@ -1,5 +1,4 @@
 import React from 'react';
-import { ComponentStory } from '@storybook/react';
 import 'index.css';
 
 export default {
@@ -7,6 +6,6 @@ export default {
   component: 'div',
 };
 
-export const RoundedMd: ComponentStory<'div'> = () => (
+export const RoundedMd = () => (
   <div className="bg-primary text-white p-4 rounded-md">Rounded Md</div>
 );

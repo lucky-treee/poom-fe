@@ -25,6 +25,15 @@ module.exports = {
     'react/require-default-props': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/function-component-definition': 'off',
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': [
+      'warn',
+      {
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+        caughtErrorsIgnorePattern: '^_',
+      },
+    ],
     'import/no-extraneous-dependencies': [
       'error',
       {
