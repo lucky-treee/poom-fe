@@ -17,6 +17,10 @@ module.exports = {
         13.5: '3.375rem', // 54px
       },
     },
+    fontFamily: {
+      display: ['Noto Sans KR', 'Roboto', 'sans-serif'],
+      mono: ['Noto Sans Mono', 'monospace'],
+    },
     colors: {
       ...colors,
       primary: '#53B860',

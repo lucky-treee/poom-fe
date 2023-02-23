@@ -1,14 +1,13 @@
-// create components/map/LocateButton.tsx storybook
 import React from 'react';
 import LocateButton from 'components/map/LocateButton';
-import { ComponentStory } from '@storybook/react';
+import { StoryFn } from '@storybook/react';
 
 export default {
   title: 'LocateButton',
   component: LocateButton,
 };
 
-const Template: ComponentStory<typeof LocateButton> = (args) => (
+const Template: StoryFn<typeof LocateButton> = (args) => (
   <LocateButton {...args} />
 );
 
