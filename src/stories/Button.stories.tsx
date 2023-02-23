@@ -9,25 +9,25 @@ export default {
 };
 
 export const Main: ComponentStory<'div'> = () => (
-  <Button type="main" width="10rem">
+  <Button type="main" className="w-40">
     Button Text
   </Button>
 );
 
 export const MainSmall: ComponentStory<'div'> = () => (
-  <Button type="main-s" width="10rem">
+  <Button type="main" size="small" className="w-40">
     Button Text
   </Button>
 );
 
 export const Outline: ComponentStory<'div'> = () => (
-  <Button type="outlined" width="10rem">
+  <Button type="outlined" className="w-40">
     Button Text
   </Button>
 );
 
 export const OutlineSmall: ComponentStory<'div'> = () => (
-  <Button type="outlined-s" width="10rem">
+  <Button type="outlined" size="small" className="w-40">
     Button Text
   </Button>
 );

@@ -28,6 +28,7 @@ module.exports = {
       link: colors.sky[500],
       placeholder: colors.gray[500],
       disabled: colors.gray[500],
+      'border-gray': '#C5C5C5',
     },
   },
   plugins: [],

@@ -8,14 +8,14 @@ export default {
   component: 'input',
 };
 
-export const Default: ComponentStory<'div'> = () => (
+export const Default: ComponentStory<'input'> = () => (
   <InputBox type="default" placeholder="Placeholder" />
 );
 
-export const Active: ComponentStory<'div'> = () => (
+export const Active: ComponentStory<'input'> = () => (
   <InputBox type="active" placeholder="Placeholder" />
 );
 
-export const Error: ComponentStory<'div'> = () => (
+export const Error: ComponentStory<'input'> = () => (
   <InputBox type="error" placeholder="Placeholder" />
 );
