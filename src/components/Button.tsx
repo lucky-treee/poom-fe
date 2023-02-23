@@ -10,7 +10,7 @@ type ButtonProps = {
 const Button: React.FC<ButtonProps> = (props) => {
   const { size, children, type, className } = props;
 
-  if (type === 'main' && size === ('default' || undefined)) {
+  if (type === 'main' && size === 'default') {
     return (
       <button
         type="button"
@@ -30,7 +30,7 @@ const Button: React.FC<ButtonProps> = (props) => {
       </button>
     );
   }
-  if (type === 'outlined' && size === ('default' || undefined)) {
+  if (type === 'outlined' && size === 'default') {
     return (
       <button
         type="button"
