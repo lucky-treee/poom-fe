@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReactComponent as LocateIcon } from 'assets/Locate.svg';
+import { ReactComponent as LocateIcon } from 'assets/map/Locate.svg';
 
 type LocateButtonProps = {
   onClick: () => void;
