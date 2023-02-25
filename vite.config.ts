@@ -6,4 +6,14 @@ import tsconfigpaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
   plugins: [react(), tsconfigpaths(), VitePluginHtmlEnv(), svgr()],
+  server: {
+    proxy: {
+      '^/api/shop/.*': {
+        target: 'https://poom-shop.c0dewave.com',
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/api\/shop/, ''),
+      },
+    },
+  },
 });

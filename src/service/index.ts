@@ -1,8 +1,9 @@
 import axios from 'axios';
+import config from 'config';
 
-const client = () => {
+const createService = (baseURL: string) => {
   const instance = axios.create({
-    baseURL: import.meta.env.BASE_URL,
+    baseURL,
     headers: {
       'Content-Type': 'application/json',
     },
@@ -11,4 +12,4 @@ const client = () => {
   return instance;
 };
 
-export default client();
+export const ShopService = createService(config.shopApiHost);
