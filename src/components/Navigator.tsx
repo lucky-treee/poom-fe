@@ -1,12 +1,12 @@
 import React from 'react';
 import PathName from 'constants/PathName';
-import NavigatorCurve from 'assets/NavigatorCurve';
 import { ReactComponent as AddShopIcon } from 'assets/AddShopIcon.svg';
 import MapIcon from 'assets/MapIcon';
+import NavigatorCurve from 'assets/NavigatorCurve';
 import ProfileIcon from 'assets/ProfileIcon';
-import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import Typography from 'components/Typography';
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 type NavigatorProps = {
   menu: 'map' | 'profile';

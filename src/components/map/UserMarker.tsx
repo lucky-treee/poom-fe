@@ -1,7 +1,7 @@
 import React from 'react';
-import { MapMarker } from 'react-kakao-maps-sdk';
 import UserImgSrc from 'assets/user.svg';
 import { LocationType } from 'models/Location';
+import { MapMarker } from 'react-kakao-maps-sdk';
 
 type UserMarkerProps = {
   userLocation: LocationType;

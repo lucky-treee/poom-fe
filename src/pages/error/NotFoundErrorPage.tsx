@@ -1,8 +1,8 @@
 import React from 'react';
+import PathName from 'constants/PathName';
+import Typography from 'components/Typography';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
-import Typography from 'components/Typography';
-import PathName from 'constants/PathName';
 
 const NotFoundErrorPage: React.FC = () => {
   const { t } = useTranslation();

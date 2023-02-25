@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import LocateButton from 'components/map/LocateButton';
+import UserMarker from 'components/map/UserMarker';
+import Navigator from 'components/Navigator';
+import { LocationType } from 'models/Location';
 import { useGeolocated } from 'react-geolocated';
 import { Map } from 'react-kakao-maps-sdk';
-import UserMarker from 'components/map/UserMarker';
-import LocateButton from 'components/map/LocateButton';
-import { LocationType } from 'models/Location';
-import Navigator from 'components/Navigator';
 
 const MapPage: React.FC = () => {
   const { coords, isGeolocationAvailable, isGeolocationEnabled, getPosition } =
