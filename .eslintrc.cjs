@@ -25,6 +25,7 @@ module.exports = {
     'react/require-default-props': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/function-component-definition': 'off',
+    'react-hooks/exhaustive-deps': 'off',
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': [
       'warn',
@@ -34,13 +35,35 @@ module.exports = {
         caughtErrorsIgnorePattern: '^_',
       },
     ],
-    'import/no-extraneous-dependencies': [
+    'import/no-extraneous-dependencies': 'off',
+    'import/prefer-default-export': 'off',
+    'import/order': [
       'error',
       {
-        devDependencies: true,
+        pathGroups: [
+          {
+            pattern: 'react',
+            group: 'builtin',
+            position: 'before',
+          },
+        ],
+        pathGroupsExcludedImportTypes: ['react'],
+        groups: [
+          'builtin',
+          'external',
+          'parent',
+          'internal',
+          'sibling',
+          'index',
+          'type',
+        ],
+        'newlines-between': 'never',
+        alphabetize: {
+          order: 'asc',
+          caseInsensitive: true,
+        },
       },
     ],
-    'import/prefer-default-export': 'off',
     'no-restricted-imports': [
       'error',
       {

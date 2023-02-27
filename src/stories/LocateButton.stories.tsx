@@ -1,6 +1,6 @@
 import React from 'react';
-import LocateButton from 'components/map/LocateButton';
 import { StoryFn } from '@storybook/react';
+import LocateButton from 'components/map/LocateButton';
 
 export default {
   title: 'LocateButton',
