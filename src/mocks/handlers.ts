@@ -2,7 +2,7 @@ import { rest } from 'msw';
 
 export const handlers = [
   // eslint-disable-next-line consistent-return
-  rest.get('/auth/login', (req, res, ctx) => {
+  rest.get('/api/auth/auth/login', (req, res, ctx) => {
     const code = req.url.searchParams.get('code');
 
     if (code === 'valid') {
@@ -28,7 +28,21 @@ export const handlers = [
         })
       );
     }
+  }),
+  rest.get('/api/auth/auth/profile', (req, res, ctx) => {
+    const passed = Math.random() > 0.5;
 
-    // if real code, use real login api
+    if (!passed) return res(ctx.status(401));
+
+    return res(
+      ctx.status(200),
+      ctx.json({
+        imageSrc: 'https://avatars.githubusercontent.com/u/20200204',
+        nickname: '예시_닉네임',
+        email: 'luckytree@lucky.com',
+        reviewCount: 1234,
+        favoriteCount: 2468,
+      })
+    );
   }),
 ];
