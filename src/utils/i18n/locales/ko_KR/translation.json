@@ -9,6 +9,8 @@
   "unknown-error-page-title": "알 수 없는 오류가 발생했어요.",
   "unknown-error-page-description": "알 수 없는 오류가 발생했어요. 관리자에게 문의해주세요.",
   "unknown-error-occur-message" : "다음과 같은 에러가 발생했습니다.",
+  "need-login-message": "로그인이 필요한 서비스입니다.",
+  "login-link-text": "로그인",
   "map-navigator-menu-text": "지도",
   "profile-navigator-menu-text": "마이페이지",
   "login-page-describe": "로그인하여 더 많은 서비스를 이용해보세요.",
