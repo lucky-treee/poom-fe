@@ -13,3 +13,5 @@ const createService = (baseURL: string) => {
 };
 
 export const ShopService = createService(config.shopApiHost);
+
+export const AuthService = createService(config.authApiHost);

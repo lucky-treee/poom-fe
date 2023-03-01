@@ -1,5 +1,6 @@
 import React from 'react';
 import PathName from 'constants/PathName';
+import AuthPage from 'pages/AuthPage';
 import NotFoundErrorPage from 'pages/error/NotFoundErrorPage';
 import LoginPage from 'pages/LoginPage';
 import MapPage from 'pages/MapPage';
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path={PathName.MAP_PAGE} element={<MapPage />} />
         <Route path={PathName.LOGIN_PAGE} element={<LoginPage />} />
+        <Route path={PathName.AUTH_PAGE} element={<AuthPage />} />
         <Route path={PathName.SIGNUP_PAGE} element={<SignUpPage />} />
         <Route path={PathName.PROFILE_PAGE} element={<ProfilePage />} />
         <Route path={PathName.SHOP_PAGE} element={<ShopPage />} />
