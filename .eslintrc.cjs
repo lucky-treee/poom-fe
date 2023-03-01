@@ -64,6 +64,7 @@ module.exports = {
         },
       },
     ],
+    'jsx-a11y/anchor-is-valid': 'off',
     'no-restricted-imports': [
       'error',
       {
