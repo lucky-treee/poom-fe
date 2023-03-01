@@ -1,11 +1,11 @@
 import React from 'react';
 import PathName from 'constants/PathName';
 import Navigator from 'components/Navigator';
+import LoginAlertProfile from 'components/profile/LoginAlertProfile';
 import Profile from 'components/profile/Profile';
 import SectionButton from 'components/profile/SectionButton';
 import Typography from 'components/Typography';
 import { useGetUserInformation } from 'hooks/api/useGetUserInformation';
-import LoginAlertProfile from 'models/auth/LoginAlertProfile';
 import { useTranslation } from 'react-i18next';
 
 const ProfilePage: React.FC = () => {

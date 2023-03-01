@@ -19,7 +19,10 @@ const LoginAlertProfile: React.FC<LoginAlertProfileProps> = (props) => {
         <Typography type="subtitle">{t('need-login-message')}</Typography>
         <Link
           className="text-sm font-normal leading-5 text-sky-500 underline"
-          to={PathName.LOGIN_PAGE}
+          to={{
+            pathname: PathName.LOGIN_PAGE,
+            search: `?from=profile`,
+          }}
         >
           {t('login-link-text')}
         </Link>
