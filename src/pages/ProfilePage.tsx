@@ -23,7 +23,7 @@ const ProfilePage: React.FC = () => {
       {userInformation ? (
         <Profile className="px-6 py-4" userInformation={userInformation} />
       ) : (
-        <LoginAlertProfile className="px-6 py-8" />
+        <LoginAlertProfile className="px-6 py-8 min-h-[128px] " />
       )}
       <SectionButton
         disabled={isLogin}

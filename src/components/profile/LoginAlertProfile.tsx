@@ -15,7 +15,7 @@ const LoginAlertProfile: React.FC<LoginAlertProfileProps> = (props) => {
 
   return (
     <div className={`flex flex-col ${className}`}>
-      <div className="flex flex-row gap-2 items-center">
+      <div className="flex flex-col gap-2">
         <Typography type="subtitle">{t('need-login-message')}</Typography>
         <Link
           className="text-sm font-normal leading-5 text-sky-500 underline"
