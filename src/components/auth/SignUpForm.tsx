@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PathName from 'constants/PathName';
 import Terms from 'constants/Terms';
 import { ReactComponent as EditIcon } from 'assets/auth/mingcute_pencil-fill.svg';
-import NicknameInput from 'components/auth/NickNameInput';
+import NicknameInput from 'components/auth/NicknameInput';
 import ProfileImagePreview from 'components/auth/ProfileImagePreview';
 import ProfileSelectModal from 'components/auth/ProfileSelectModal';
 import Button from 'components/Button';
