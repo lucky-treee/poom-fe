@@ -14,7 +14,7 @@ const SignUpSuccessPage: React.FC = () => {
         <Typography type="title">{t('sign-up-success-title')}</Typography>
         <Typography type="body">{t('sign-up-success-description')}</Typography>
       </div>
-      <Button type="main">
+      <Button variant="main">
         <Link to={PathName.MAP_PAGE}>{t('back-to-home-button-text')}</Link>
       </Button>
     </div>
