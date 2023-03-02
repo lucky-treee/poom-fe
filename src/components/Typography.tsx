@@ -3,7 +3,7 @@ import React from 'react';
 type TypographyProps = {
   children: React.ReactNode;
   className?: string;
-  type: 'title' | 'subtitle' | 'caption' | 'body' | 'code';
+  type: 'title' | 'subtitle' | 'caption' | 'border-caption' | 'body' | 'code';
 };
 
 const Typography: React.FC<TypographyProps> = (props) => {
@@ -29,6 +29,11 @@ const Typography: React.FC<TypographyProps> = (props) => {
   if (type === 'caption') {
     return (
       <p className={`text-xs font-normal leading-4 ${className}`}>{children}</p>
+    );
+  }
+  if (type === 'border-caption') {
+    return (
+      <p className={`text-xs font-bold leading-4 ${className}`}>{children}</p>
     );
   }
   if (type === 'code') {
