@@ -7,6 +7,7 @@ import MapPage from 'pages/MapPage';
 import ProfilePage from 'pages/ProfilePage';
 import ShopPage from 'pages/ShopPage';
 import SignUpPage from 'pages/SignUpPage';
+import SignUpSuccessPage from 'pages/SignUpSuccessPage';
 import { Route, Routes } from 'react-router';
 
 function App() {
@@ -16,6 +17,10 @@ function App() {
         <Route path={PathName.MAP_PAGE} element={<MapPage />} />
         <Route path={PathName.LOGIN_PAGE} element={<LoginPage />} />
         <Route path={PathName.AUTH_PAGE} element={<AuthPage />} />
+        <Route
+          path={PathName.SIGNUP_SUCCESS_PAGE}
+          element={<SignUpSuccessPage />}
+        />
         <Route path={PathName.SIGNUP_PAGE} element={<SignUpPage />} />
         <Route path={PathName.PROFILE_PAGE} element={<ProfilePage />} />
         <Route path={PathName.SHOP_PAGE} element={<ShopPage />} />

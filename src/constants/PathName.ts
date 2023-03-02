@@ -6,6 +6,7 @@ const PathName = {
   SHOP_PAGE: '/shop/:id',
   LOGIN_PAGE: '/login',
   SIGNUP_PAGE: '/signup',
+  SIGNUP_SUCCESS_PAGE: '/signup/success',
   AUTH_PAGE: '/auth',
 };
 
