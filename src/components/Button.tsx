@@ -1,50 +1,39 @@
+/* eslint-disable react/button-has-type */
 import React from 'react';
 
+type SizeOptions = 'default' | 'small';
+
 type ButtonProps = {
-  type: 'main' | 'outlined';
-  children?: React.ReactNode;
-  size?: 'default' | 'small';
+  variant: 'main' | 'outlined' | 'contained';
+  size?: SizeOptions;
   className?: string;
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
+
+const Size: Record<SizeOptions, string> = {
+  small: 'py-1 px-2',
+  default: 'p-2',
 };
 
 const Button: React.FC<ButtonProps> = (props) => {
-  const { size, children, type, className } = props;
+  const { size = 'default', children, variant, className, ...rest } = props;
 
-  if (type === 'main' && size === 'default') {
+  const defaultStyle = 'flex justify-center items-center rounded-md';
+
+  if (variant === 'main') {
     return (
       <button
-        type="button"
-        className={`flex justify-center items-center bg-primary hover:bg-primary-hover text-white p-2 rounded-md ${className}`}
+        className={`${defaultStyle} bg-primary hover:bg-primary-hover text-white ${Size[size]} ${className}`}
+        {...rest}
       >
         {children}
       </button>
     );
   }
-  if (type === 'main' && size === 'small') {
+  if (variant === 'outlined') {
     return (
       <button
-        type="button"
-        className={`flex justify-center items-center bg-primary hover:bg-primary-hover text-white py-1 px-2 rounded-md ${className}`}
-      >
-        {children}
-      </button>
-    );
-  }
-  if (type === 'outlined' && size === 'default') {
-    return (
-      <button
-        type="button"
-        className={`flex justify-center items-center bg-white hover:bg-neutral-100 border-border-gray hover:border-text border p-2 rounded-md ${className}`}
-      >
-        {children}
-      </button>
-    );
-  }
-  if (type === 'outlined' && size === 'small') {
-    return (
-      <button
-        type="button"
-        className={`flex justify-center items-center bg-white hover:bg-neutral-100 border-border-gray hover:border-text border py-1 px-2 rounded-md ${className}`}
+        className={`${defaultStyle} hover:bg-neutral-100 border-border-gray hover:border-text border ${Size[size]} ${className}`}
+        {...rest}
       >
         {children}
       </button>
@@ -52,10 +41,7 @@ const Button: React.FC<ButtonProps> = (props) => {
   }
 
   return (
-    <button
-      type="button"
-      className="flex justify-center items-center bg-primary hover:bg-primary-hover text-white p-2 rounded-md"
-    >
+    <button className={`${defaultStyle} ${Size[size]} ${className}`} {...rest}>
       {children}
     </button>
   );
