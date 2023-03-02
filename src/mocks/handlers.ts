@@ -45,4 +45,12 @@ export const handlers = [
       })
     );
   }),
+  // eslint-disable-next-line consistent-return
+  rest.post('/api/auth/auth/signup', async (req, res, ctx) => {
+    const { nickname } = await req.json();
+
+    if (nickname === 'chj') {
+      return res(ctx.status(200));
+    }
+  }),
 ];
