@@ -4,7 +4,7 @@ import Input from 'components/Input';
 import 'index.css';
 
 export default {
-  title: 'Input Box',
+  title: 'Input',
   component: Input,
 };
 
