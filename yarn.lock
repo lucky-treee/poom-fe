@@ -8794,6 +8794,11 @@ react-geolocated@^4.0.3:
   resolved "https://registry.yarnpkg.com/react-geolocated/-/react-geolocated-4.0.3.tgz#d0656f7b7ff1578e8499c79828c063e729635cc2"
   integrity sha512-p+BObdbWT4kINILkUZtqkWHippBsCLnQ+dyx9Bnd+m3086Xkw7VKWxcFavCd2pG6AM50jsiMJiDu0+DjelnT9g==
 
+react-hook-form@^7.43.3:
+  version "7.43.3"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.43.3.tgz#780af64ea1f3c5864626a377e302bfcc7750af6f"
+  integrity sha512-LV6Fixh+hirrl6dXbM78aB6n//82aKbsNbcofF3wc6nx1UJLu3Jj/gsg1E5C9iISnLX+du8VTUyBUz2aCy+H7w==
+
 react-i18next@^12.1.4:
   version "12.1.4"
   resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-12.1.4.tgz#be0a60d3a45acc4321909f8a4b8cde16518a2926"
