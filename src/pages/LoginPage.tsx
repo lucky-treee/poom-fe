@@ -2,10 +2,12 @@ import React from 'react';
 import Terms from 'constants/Terms';
 import { ReactComponent as PoomLogo } from 'assets/app/poom.svg';
 import KakaoLoginImage from 'assets/auth/kakaoLoginMedium.png';
+import { ReactComponent as BackIcon } from 'assets/components/navigate/back.svg';
 import Typography from 'components/Typography';
 import useKakaoLogin from 'hooks/useKakaoLogin';
 import { LoginFrom } from 'models/auth/LoginFrom';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage: React.FC = () => {
   const searchParams = new URLSearchParams(document.location.search);
@@ -18,8 +20,17 @@ const LoginPage: React.FC = () => {
 
   const { t } = useTranslation();
 
+  const navigate = useNavigate();
+
   return (
-    <div className="flex justify-center items-center flex-col pt-12 pl-12 pr-12 pb-12 h-screen">
+    <div className="flex relative justify-center items-center flex-col p-12 h-screen">
+      <button
+        type="button"
+        className="flex flex-row gap-1 items-center absolute top-8 left-8"
+        onClick={() => navigate(-1)}
+      >
+        <BackIcon />
+      </button>
       <div className="flex justify-between items-center flex-col h-[360px]">
         <PoomLogo />
         <div className="flex justify-between items-center flex-col gap-16">

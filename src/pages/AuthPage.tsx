@@ -22,16 +22,16 @@ const AuthPage: React.FC = () => {
     onSuccess: () => {
       switch (from) {
         case 'review':
-          // navigate(PathName.MAP_PAGE);
+          navigate(PathName.MAP_PAGE);
           break;
         case 'profile':
-          // navigate(PathName.PROFILE_PAGE);
+          navigate(PathName.PROFILE_PAGE);
           break;
         case 'signUp':
-          // navigate(PathName.SIGNUP_PAGE);
+          navigate(PathName.SIGNUP_PAGE);
           break;
         default:
-          // navigate(PathName.PROFILE_PAGE);
+          navigate(PathName.PROFILE_PAGE);
           break;
       }
     },
