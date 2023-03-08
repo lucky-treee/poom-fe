@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import LocateButton from 'components/map/LocateButton';
+import ShopMarker from 'components/map/ShopMarker';
 import UserMarker from 'components/map/UserMarker';
 import Navigator from 'components/Navigator';
+import ShopModal from 'components/ShopModal';
 import { LocationType } from 'models/Location';
+import { Shop } from 'models/shop/Shop';
 import { useGeolocated } from 'react-geolocated';
 import { Map } from 'react-kakao-maps-sdk';
+import { fetchShopList } from 'service/shop';
 
 const MapPage: React.FC = () => {
   const { coords, isGeolocationAvailable, isGeolocationEnabled, getPosition } =
@@ -19,6 +23,10 @@ const MapPage: React.FC = () => {
     lat: 0,
     lng: 0,
   });
+
+  const [shopList, setShopList] = useState<Shop[]>([]);
+
+  const [modal, setModal] = useState<boolean>(false);
 
   const isCenterLocationInitialized = centerLocation.lat !== 0;
 
@@ -53,6 +61,21 @@ const MapPage: React.FC = () => {
     setCenterLocation({ ...userLocation });
   };
 
+  // Error: 계속해서 데이터를 re-render 하게 됨.
+  (async () => {
+    const getShopList = await fetchShopList(
+      userLocation.lat,
+      userLocation.lat - 30,
+      userLocation.lng,
+      userLocation.lng - 30
+    );
+    setShopList(getShopList.data);
+  })();
+
+  const handleShopModal = () => {
+    setModal(!modal);
+  };
+
   return (
     <div className="w-screen h-screen">
       <Navigator menu="map" />
@@ -64,6 +87,18 @@ const MapPage: React.FC = () => {
         onCenterChanged={handleMapCenterChanged}
       >
         <UserMarker userLocation={userLocation} />
+        <div className="shopList">
+          {shopList.map((shop) => {
+            return (
+              <ShopMarker
+                onClick={handleShopModal}
+                key={shop.name}
+                shopLocation={{ lat: shop.lat, lng: shop.lng }}
+              />
+            );
+          })}
+        </div>
+        {modal ? <ShopModal /> : null}
       </Map>
       <LocateButton
         onClick={handleLocateButtonClick}
