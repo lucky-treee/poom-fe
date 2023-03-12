@@ -5,7 +5,7 @@ type SizeOptions = 'default' | 'small';
 
 type HashtagOptions = 'GOOD' | 'CLEAN' | 'NICE' | 'CHEAP' | 'QUALITY';
 
-type ChipProps = {
+type DrawerProps = {
   hashtag: HashtagOptions;
   size?: SizeOptions;
   className?: string;
@@ -24,7 +24,7 @@ const Color: Record<HashtagOptions, string> = {
   QUALITY: 'bg-violet-500',
 };
 
-const Chip: React.FC<ChipProps> = (props) => {
+const Drawer: React.FC<DrawerProps> = (props) => {
   const { hashtag = 'GOOD', size = 'default', className } = props;
 
   const defaultStyle =
@@ -59,4 +59,4 @@ const Chip: React.FC<ChipProps> = (props) => {
   );
 };
 
-export default Chip;
+export default Drawer;

@@ -1,6 +1,5 @@
 import React from 'react';
 import ShopImgSrc from 'assets/components/navigate/shop.svg';
-// import { ShopService } from 'service';
 import { LocationType } from 'models/Location';
 import { MapMarker } from 'react-kakao-maps-sdk';
 

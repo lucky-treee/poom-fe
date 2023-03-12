@@ -4,6 +4,7 @@ import ShopMarker from 'components/map/ShopMarker';
 import UserMarker from 'components/map/UserMarker';
 import Navigator from 'components/Navigator';
 import ShopModal from 'components/ShopModal';
+import { useFetchShopList } from 'hooks/api/useFetchShopList';
 import { LocationType } from 'models/Location';
 import { Shop } from 'models/shop/Shop';
 import { useGeolocated } from 'react-geolocated';
@@ -24,9 +25,9 @@ const MapPage: React.FC = () => {
     lng: 0,
   });
 
-  const [shopList, setShopList] = useState<Shop[]>([]);
-
   const [modal, setModal] = useState<boolean>(false);
+
+  const { data } = useFetchShopList(1000, 0, 1000, 0);
 
   const isCenterLocationInitialized = centerLocation.lat !== 0;
 
@@ -61,17 +62,6 @@ const MapPage: React.FC = () => {
     setCenterLocation({ ...userLocation });
   };
 
-  // Error: 계속해서 데이터를 re-render 하게 됨.
-  (async () => {
-    const getShopList = await fetchShopList(
-      userLocation.lat,
-      userLocation.lat - 30,
-      userLocation.lng,
-      userLocation.lng - 30
-    );
-    setShopList(getShopList.data);
-  })();
-
   const handleShopModal = () => {
     setModal(!modal);
   };
@@ -88,7 +78,7 @@ const MapPage: React.FC = () => {
       >
         <UserMarker userLocation={userLocation} />
         <div className="shopList">
-          {shopList.map((shop) => {
+          {data?.map((shop) => {
             return (
               <ShopMarker
                 onClick={handleShopModal}
@@ -98,7 +88,14 @@ const MapPage: React.FC = () => {
             );
           })}
         </div>
-        {modal ? <ShopModal /> : null}
+        {modal ? (
+          <ShopModal
+            title="쓰레기 없는 행복 카페"
+            category="카페, 커피"
+            address="서울시 땡땡구 204-12 현대빌딩 301호"
+            review={3012312300}
+          />
+        ) : null}
       </Map>
       <LocateButton
         onClick={handleLocateButtonClick}
