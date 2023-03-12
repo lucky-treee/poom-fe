@@ -6,10 +6,8 @@ import Navigator from 'components/Navigator';
 import ShopModal from 'components/ShopModal';
 import { useFetchShopList } from 'hooks/api/useFetchShopList';
 import { LocationType } from 'models/Location';
-import { Shop } from 'models/shop/Shop';
 import { useGeolocated } from 'react-geolocated';
 import { Map } from 'react-kakao-maps-sdk';
-import { fetchShopList } from 'service/shop';
 
 const MapPage: React.FC = () => {
   const { coords, isGeolocationAvailable, isGeolocationEnabled, getPosition } =
