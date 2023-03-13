@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import LocateButton from 'components/map/LocateButton';
+import ShopMarker from 'components/map/ShopMarker';
 import UserMarker from 'components/map/UserMarker';
 import Navigator from 'components/Navigator';
+import ShopModal from 'components/ShopModal';
+import { useFetchShopList } from 'hooks/api/useFetchShopList';
 import { LocationType } from 'models/Location';
 import { useGeolocated } from 'react-geolocated';
 import { Map } from 'react-kakao-maps-sdk';
@@ -19,6 +22,10 @@ const MapPage: React.FC = () => {
     lat: 0,
     lng: 0,
   });
+
+  const [modal, setModal] = useState<boolean>(false);
+
+  const { data } = useFetchShopList(1000, 0, 1000, 0);
 
   const isCenterLocationInitialized = centerLocation.lat !== 0;
 
@@ -53,6 +60,10 @@ const MapPage: React.FC = () => {
     setCenterLocation({ ...userLocation });
   };
 
+  const handleShopModal = () => {
+    setModal(!modal);
+  };
+
   return (
     <div className="w-screen h-screen">
       <Navigator menu="map" />
@@ -64,6 +75,25 @@ const MapPage: React.FC = () => {
         onCenterChanged={handleMapCenterChanged}
       >
         <UserMarker userLocation={userLocation} />
+        <div className="shopList">
+          {data?.map((shop) => {
+            return (
+              <ShopMarker
+                onClick={handleShopModal}
+                key={shop.name}
+                shopLocation={{ lat: shop.lat, lng: shop.lng }}
+              />
+            );
+          })}
+        </div>
+        {modal ? (
+          <ShopModal
+            title="쓰레기 없는 행복 카페"
+            category="카페, 커피"
+            address="서울시 땡땡구 204-12 현대빌딩 301호"
+            review={3012312300}
+          />
+        ) : null}
       </Map>
       <LocateButton
         onClick={handleLocateButtonClick}
