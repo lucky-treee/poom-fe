@@ -63,7 +63,7 @@ const AuthPage: React.FC = () => {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center flex-col pt-12 pl-12 pr-12 pb-12 h-screen">
-        <LoadingProgressIcon />
+        <LoadingProgressIcon className="fill-primary" />
       </div>
     );
   }
