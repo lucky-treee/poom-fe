@@ -1,4 +1,4 @@
-import { Shop } from 'models/Shop';
+import { Shop } from 'models/shop/Shop';
 
 export type ShopResponse = {
   status: number;
