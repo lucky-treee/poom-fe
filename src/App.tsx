@@ -6,6 +6,7 @@ import LoginPage from 'pages/LoginPage';
 import MapPage from 'pages/MapPage';
 import ProfilePage from 'pages/ProfilePage';
 import ShopPage from 'pages/ShopPage';
+import ShopRegisterPage from 'pages/ShopRegisterPage';
 import SignUpPage from 'pages/SignUpPage';
 import SignUpSuccessPage from 'pages/SignUpSuccessPage';
 import { Route, Routes } from 'react-router';
@@ -24,6 +25,10 @@ function App() {
         <Route path={PathName.SIGNUP_PAGE} element={<SignUpPage />} />
         <Route path={PathName.PROFILE_PAGE} element={<ProfilePage />} />
         <Route path={PathName.SHOP_PAGE} element={<ShopPage />} />
+        <Route
+          path={PathName.SHOP_REGISTER_PAGE}
+          element={<ShopRegisterPage />}
+        />
         <Route path="*" element={<NotFoundErrorPage />} />
       </Routes>
     </React.Suspense>
