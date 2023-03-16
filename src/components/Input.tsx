@@ -26,7 +26,7 @@ function Input<T>(props: InputProps<T>) {
   return (
     <div className="flex flex-col w-full">
       <input
-        className={`border outline-0 w-full px-4 py-3 border-border-gray rounded-md  ${
+        className={`border outline-0 w-full px-4 py-3 border-border-gray rounded-md ${
           error ? style.error : style.normal
         } ${className}`}
         accept={accept}
