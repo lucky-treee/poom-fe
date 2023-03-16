@@ -4,7 +4,7 @@ import { LocationType } from 'models/Location';
 import { MapMarker } from 'react-kakao-maps-sdk';
 
 type ShopMarkerProps = {
-  onClick: () => void;
+  onClick?: () => void;
   shopLocation: LocationType;
 };
 
