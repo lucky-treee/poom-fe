@@ -5,9 +5,17 @@ import UserMarker from 'components/map/UserMarker';
 import Navigator from 'components/Navigator';
 import ShopDrawer from 'components/ShopDrawer';
 import { useFetchShopList } from 'hooks/api/useFetchShopList';
+import useThrottledState from 'hooks/useThrottledState';
 import { LocationType } from 'models/Location';
 import { useGeolocated } from 'react-geolocated';
 import { Map } from 'react-kakao-maps-sdk';
+
+type MapBounds = {
+  neLat: number;
+  neLng: number;
+  swLat: number;
+  swLng: number;
+};
 
 const MapPage: React.FC = () => {
   const { coords, isGeolocationAvailable, isGeolocationEnabled, getPosition } =
@@ -18,6 +26,11 @@ const MapPage: React.FC = () => {
     lng: 0,
   });
 
+  const [mapBounds, setMapBounds] = useThrottledState<MapBounds>(
+    { neLat: 0, neLng: 0, swLat: 0, swLng: 0 },
+    500
+  );
+
   const [userLocation, setUserLocation] = useState<LocationType>({
     lat: 0,
     lng: 0,
@@ -27,7 +40,9 @@ const MapPage: React.FC = () => {
 
   const isShopDrawerOpen = shopIndex !== -1;
 
-  const { data } = useFetchShopList(1000, 0, 1000, 0);
+  const { neLat, neLng, swLat, swLng } = mapBounds;
+
+  const { data } = useFetchShopList(neLat, neLng, swLat, swLng);
 
   const isCenterLocationInitialized = centerLocation.lat !== 0;
 
@@ -54,6 +69,13 @@ const MapPage: React.FC = () => {
     setCenterLocation({
       lat: map.getCenter().getLat(),
       lng: map.getCenter().getLng(),
+    });
+
+    setMapBounds({
+      neLat: map.getBounds().getNorthEast().getLat(),
+      neLng: map.getBounds().getNorthEast().getLng(),
+      swLat: map.getBounds().getSouthWest().getLat(),
+      swLng: map.getBounds().getSouthWest().getLng(),
     });
   };
 
