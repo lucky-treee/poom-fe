@@ -3,11 +3,19 @@ import LocateButton from 'components/map/LocateButton';
 import ShopMarker from 'components/map/ShopMarker';
 import UserMarker from 'components/map/UserMarker';
 import Navigator from 'components/Navigator';
-import ShopModal from 'components/ShopModal';
+import ShopDrawer from 'components/ShopDrawer';
 import { useFetchShopList } from 'hooks/api/useFetchShopList';
+import useThrottledState from 'hooks/useThrottledState';
 import { LocationType } from 'models/Location';
 import { useGeolocated } from 'react-geolocated';
 import { Map } from 'react-kakao-maps-sdk';
+
+type MapBounds = {
+  neLat: number;
+  neLng: number;
+  swLat: number;
+  swLng: number;
+};
 
 const MapPage: React.FC = () => {
   const { coords, isGeolocationAvailable, isGeolocationEnabled, getPosition } =
@@ -18,14 +26,23 @@ const MapPage: React.FC = () => {
     lng: 0,
   });
 
+  const [mapBounds, setMapBounds] = useThrottledState<MapBounds>(
+    { neLat: 0, neLng: 0, swLat: 0, swLng: 0 },
+    500
+  );
+
   const [userLocation, setUserLocation] = useState<LocationType>({
     lat: 0,
     lng: 0,
   });
 
-  const [modal, setModal] = useState<boolean>(false);
+  const [shopIndex, setShopIndex] = useState(-1);
 
-  const { data } = useFetchShopList(1000, 0, 1000, 0);
+  const isShopDrawerOpen = shopIndex !== -1;
+
+  const { neLat, neLng, swLat, swLng } = mapBounds;
+
+  const { data } = useFetchShopList(neLat, neLng, swLat, swLng);
 
   const isCenterLocationInitialized = centerLocation.lat !== 0;
 
@@ -53,6 +70,13 @@ const MapPage: React.FC = () => {
       lat: map.getCenter().getLat(),
       lng: map.getCenter().getLng(),
     });
+
+    setMapBounds({
+      neLat: map.getBounds().getNorthEast().getLat(),
+      neLng: map.getBounds().getNorthEast().getLng(),
+      swLat: map.getBounds().getSouthWest().getLat(),
+      swLng: map.getBounds().getSouthWest().getLng(),
+    });
   };
 
   const handleLocateButtonClick = () => {
@@ -60,8 +84,12 @@ const MapPage: React.FC = () => {
     setCenterLocation({ ...userLocation });
   };
 
-  const handleShopModal = () => {
-    setModal(!modal);
+  const handleShopClick = (index: number) => {
+    setShopIndex(index);
+  };
+
+  const handleShopDrawerClose = () => {
+    setShopIndex(-1);
   };
 
   return (
@@ -73,21 +101,22 @@ const MapPage: React.FC = () => {
         center={centerLocation}
         level={3}
         onCenterChanged={handleMapCenterChanged}
+        onClick={handleShopDrawerClose}
       >
         <UserMarker userLocation={userLocation} />
-        <div className="shopList">
-          {data?.map((shop) => {
+        <div>
+          {data?.map((shop, index) => {
             return (
               <ShopMarker
-                onClick={handleShopModal}
+                onClick={() => handleShopClick(index)}
                 key={shop.name}
                 shopLocation={{ lat: shop.lat, lng: shop.lng }}
               />
             );
           })}
         </div>
-        {modal ? (
-          <ShopModal
+        {isShopDrawerOpen ? (
+          <ShopDrawer
             title="쓰레기 없는 행복 카페"
             category="카페, 커피"
             address="서울시 땡땡구 204-12 현대빌딩 301호"

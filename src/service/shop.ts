@@ -1,3 +1,4 @@
+import { ShopRegisterRequest } from 'models/shop/request';
 import { ShopResponse } from 'models/shop/response';
 import { ShopService } from 'service';
 
@@ -7,7 +8,7 @@ export const fetchShopList = (
   maxLng: number,
   minLng: number
 ) => {
-  return ShopService.get<ShopResponse>('/v1/shop/get', {
+  return ShopService.get<ShopResponse>('/v1/shops', {
     params: {
       maxLat,
       minLat,
@@ -15,4 +16,8 @@ export const fetchShopList = (
       minLng,
     },
   });
+};
+
+export const registerShop = (shopRegisterRequest: ShopRegisterRequest) => {
+  return ShopService.post('/v1/shops/shop', shopRegisterRequest);
 };

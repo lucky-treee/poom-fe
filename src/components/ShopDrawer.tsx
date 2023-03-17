@@ -1,6 +1,7 @@
 import React from 'react';
-import Drawer from 'components/Drawer';
+import HashtagChip from 'components/HashtagChip';
 import Typography from 'components/Typography';
+import { useTranslation } from 'react-i18next';
 
 type ModalProps = {
   title: string;
@@ -9,8 +10,10 @@ type ModalProps = {
   review?: number;
 };
 
-const ShopModal: React.FC<ModalProps> = (props) => {
+const ShopDrawer: React.FC<ModalProps> = (props) => {
   const { title, category, address, review = 0 } = props;
+
+  const { t } = useTranslation();
 
   return (
     <div className="absolute bottom-0 w-screen bg-white z-[1] drop-shadow-md-resverse rounded-t-lg">
@@ -24,21 +27,20 @@ const ShopModal: React.FC<ModalProps> = (props) => {
             {category}
           </Typography>
         </div>
-        <div className="flex text-text mt-2">
+        <div className="flex flex-col text-text mt-2">
           <Typography type="body" className="inline">
             {address}
           </Typography>
-          <div className="w-[1px] h-[12px] bg-border-gray rounded-full m-1" />
           <Typography type="body" className="inline">
-            리뷰{' '}
-            {review.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}
-            개
+            {t('review-count-message', {
+              reviewCount: review.toLocaleString(),
+            })}
           </Typography>
         </div>
-        <Drawer hashtag="CLEAN" size="small" className="mt-2" />
+        <HashtagChip hashtag="CLEAN" size="small" className="mt-2" />
       </div>
     </div>
   );
 };
 
-export default ShopModal;
+export default ShopDrawer;

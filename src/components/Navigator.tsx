@@ -17,12 +17,16 @@ const Navigator: React.FC<NavigatorProps> = (props) => {
 
   const navigate = useNavigate();
 
-  const handleMapBtnClick = () => {
+  const handleMapButtonClick = () => {
     navigate(PathName.MAP_PAGE);
   };
 
-  const handleProfileBtnClick = () => {
+  const handleProfileButtonClick = () => {
     navigate(PathName.PROFILE_PAGE);
+  };
+
+  const handleShopRegisterButtonClick = () => {
+    navigate(PathName.SHOP_REGISTER_PAGE);
   };
 
   const { t } = useTranslation();
@@ -32,6 +36,7 @@ const Navigator: React.FC<NavigatorProps> = (props) => {
       <button
         type="button"
         className="absolute mb-7 bottom-0 flex justify-center items-center w-13 h-13 rounded-full bg-primary hover:bg-primary-hover drop-shadow"
+        onClick={handleShopRegisterButtonClick}
       >
         <AddShopIcon />
       </button>
@@ -41,7 +46,7 @@ const Navigator: React.FC<NavigatorProps> = (props) => {
           className={`w-full h-13.5 bg-white ${
             menu === 'map' ? 'text-primary' : 'text-placeholder'
           }`}
-          onClick={handleMapBtnClick}
+          onClick={handleMapButtonClick}
         >
           <MapIcon selected={menu === 'map'} />
           <Typography type="caption">{t('map-navigator-menu-text')}</Typography>
@@ -52,7 +57,7 @@ const Navigator: React.FC<NavigatorProps> = (props) => {
           className={`w-full h-13.5 bg-white ${
             menu === 'profile' ? 'text-primary' : 'text-placeholder'
           }`}
-          onClick={handleProfileBtnClick}
+          onClick={handleProfileButtonClick}
         >
           <ProfileIcon selected={menu === 'profile'} />
           <Typography type="caption">
