@@ -21,7 +21,7 @@ const LoginAlertProfile: React.FC<LoginAlertProfileProps> = (props) => {
           className="text-sm font-normal leading-5 text-sky-500 underline"
           to={{
             pathname: PathName.LOGIN_PAGE,
-            search: `?from=profile`,
+            search: `?redirect_to=${window.location.href}`,
           }}
         >
           {t('login-link-text')}
