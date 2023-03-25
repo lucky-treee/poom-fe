@@ -15,7 +15,7 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/api\/shop/, ''),
       },
       '^/api/auth/.*': {
-        target: 'https://poom-auth.c0dewave.com',
+        target: 'https://poom-member.c0dewave.com',
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/api\/auth/, ''),
