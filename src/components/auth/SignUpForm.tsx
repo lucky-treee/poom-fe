@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import PathName from 'constants/PathName';
+import ProfileImageList from 'constants/ProfileImageList';
 import Terms from 'constants/Terms';
 import { ReactComponent as EditIcon } from 'assets/auth/mingcute_pencil-fill.svg';
 import NicknameInput from 'components/auth/NicknameInput';
-import ProfileImagePreview from 'components/auth/ProfileImagePreview';
 import ProfileSelectModal from 'components/auth/ProfileSelectModal';
 import Button from 'components/Button';
 import Typography from 'components/Typography';
@@ -13,8 +13,14 @@ import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import type { SignUpForm as SignUpFormValue } from 'models/auth//SignUpForm';
 
-const SignUpForm: React.FC = () => {
+type SignUpFormProps = {
+  email: string;
+};
+
+const SignUpForm: React.FC<SignUpFormProps> = (props) => {
   const { t } = useTranslation();
+
+  const { email } = props;
 
   const [imgSelectModalOpen, setImgSelectModalOpen] = useState(false);
 
@@ -22,7 +28,8 @@ const SignUpForm: React.FC = () => {
     mode: 'onChange',
     defaultValues: {
       nickname: '',
-      profileImage: '',
+      photo: ProfileImageList[0],
+      email,
     },
   });
 
@@ -30,7 +37,9 @@ const SignUpForm: React.FC = () => {
 
   const { mutate: signUp } = useSignUp();
 
-  const { handleSubmit } = methods;
+  const { handleSubmit, watch } = methods;
+
+  const profileImage = watch('photo');
 
   const onSubmit = (data: SignUpFormValue) => {
     signUp(data, {
@@ -58,7 +67,11 @@ const SignUpForm: React.FC = () => {
           <Typography type="body">{t('profile-image-description')}</Typography>
           <div className="flex justify-center items-center">
             <div className="relative flex justify-center items-center">
-              <ProfileImagePreview />
+              <img
+                className="rounded-full w-[156px] h-[156px] border border-border-gray"
+                src={profileImage}
+                alt="temperature profile"
+              />
               <button
                 type="button"
                 className="absolute bottom-3 right-3 shadow-md bg-white rounded-full p-1"
