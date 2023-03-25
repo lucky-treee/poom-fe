@@ -4,7 +4,7 @@ import { ReactComponent as PoomLogo } from 'assets/app/poom.svg';
 import KakaoLoginImage from 'assets/auth/kakaoLoginMedium.png';
 import { ReactComponent as BackIcon } from 'assets/components/navigate/back.svg';
 import Typography from 'components/Typography';
-import useKakaoLogin from 'hooks/useKakaoLogin';
+import useQueryKakaoLogin from 'hooks/useQueryKakaoLogin';
 import { LoginFrom } from 'models/auth/LoginFrom';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -14,7 +14,7 @@ const LoginPage: React.FC = () => {
 
   const from = (searchParams.get('from') as LoginFrom) ?? '';
 
-  const queryKakaoLogin = useKakaoLogin();
+  const queryKakaoLogin = useQueryKakaoLogin();
 
   const handleLoginButtonClick = () => queryKakaoLogin(from);
 
