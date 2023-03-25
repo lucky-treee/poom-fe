@@ -3,9 +3,8 @@ import { login } from 'service/auth';
 
 type UseLoginOptions = Pick<UseQueryOptions, 'onSuccess' | 'onError'>;
 
-const useLogin = (userCode: string | null, options?: UseLoginOptions) =>
-  useQuery(['login', userCode], () => login(userCode ?? ''), {
-    enabled: userCode !== null,
+const useLogin = (options?: UseLoginOptions) =>
+  useQuery(['login'], () => login(), {
     ...options,
   });
 

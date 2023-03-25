@@ -2,7 +2,7 @@ import React from 'react';
 import PathName from 'constants/PathName';
 import LoadingProgressIcon from 'components/LoadingProgressIcon';
 import Typography from 'components/Typography';
-import useLogin from 'hooks/api/useLogin';
+import useKakaoLogin from 'hooks/api/useKakaoLogin';
 import { LoginFrom } from 'models/auth/LoginFrom';
 import { useTranslation } from 'react-i18next';
 import { generatePath, useNavigate } from 'react-router';
@@ -18,7 +18,7 @@ const AuthPage: React.FC = () => {
 
   const navigate = useNavigate();
 
-  const { isLoading, isError, error } = useLogin(code, {
+  const { isLoading, isError, error } = useKakaoLogin(code, {
     onSuccess: () => {
       switch (from) {
         case 'review':
