@@ -8,6 +8,7 @@ import ProfileSelectModal from 'components/auth/ProfileSelectModal';
 import Button from 'components/Button';
 import Typography from 'components/Typography';
 import useSignUp from 'hooks/api/useSignUp';
+import useAccessToken from 'hooks/useAccessToken';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
@@ -33,19 +34,22 @@ const SignUpForm: React.FC<SignUpFormProps> = (props) => {
     },
   });
 
+  const setAccessToken = useAccessToken();
+
   const navigate = useNavigate();
 
-  const { mutate: signUp } = useSignUp();
+  const { mutate: signUp } = useSignUp({
+    onSuccess: (data) => {
+      setAccessToken(data);
+      navigate(PathName.SIGNUP_SUCCESS_PAGE);
+    },
+  });
 
   const { handleSubmit, watch } = methods;
 
   const profileImage = watch('photo');
 
-  const onSubmit = (data: SignUpFormValue) => {
-    signUp(data, {
-      onSuccess: () => navigate(PathName.SIGNUP_SUCCESS_PAGE),
-    });
-  };
+  const onSubmit = (data: SignUpFormValue) => signUp(data);
 
   const handleModalOpen = () => setImgSelectModalOpen(true);
 

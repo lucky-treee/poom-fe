@@ -6,12 +6,23 @@ import Profile from 'components/profile/Profile';
 import SectionButton from 'components/profile/SectionButton';
 import Typography from 'components/Typography';
 import { useGetUserInformation } from 'hooks/api/useGetUserInformation';
+import useLogin from 'hooks/api/useLogin';
+import useAccessToken from 'hooks/useAccessToken';
 import { useTranslation } from 'react-i18next';
 
 const ProfilePage: React.FC = () => {
   const { t } = useTranslation();
 
   const { data: userInformation } = useGetUserInformation();
+
+  const setAccessToken = useAccessToken();
+
+  useLogin({
+    onSuccess: (data) => {
+      // TODO: 로그인 시 토큰 사용 방법을 정해야함 ( 서버 구현 완료 후 )
+      if (data && data.length > 0) setAccessToken(data);
+    },
+  });
 
   const isLogin = Boolean(userInformation);
 

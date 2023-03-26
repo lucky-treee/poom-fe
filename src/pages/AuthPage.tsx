@@ -4,6 +4,7 @@ import { AxiosError } from 'axios';
 import LoadingProgressIcon from 'components/LoadingProgressIcon';
 import Typography from 'components/Typography';
 import useKakaoLogin from 'hooks/api/useKakaoLogin';
+import useAccessToken from 'hooks/useAccessToken';
 import useRedirectPath from 'hooks/useRedirectPath';
 import LoginFailErrorPage from 'pages/error/auth/LoginFailErrorPage';
 import NoKakaoCodeErrorPage from 'pages/error/auth/NoKakaoCodeErrorPage';
@@ -24,14 +25,20 @@ const AuthPage: React.FC = () => {
 
   const navigate = useNavigate();
 
+  const setAccessToken = useAccessToken();
+
+  const kakaoLoginOnSuccessHandler = (accessToken: string) => {
+    setAccessToken(accessToken);
+
+    if (redirectPath) {
+      navigate(redirectPath);
+    } else {
+      navigate(PathName.MAP_PAGE);
+    }
+  };
+
   const { isLoading, isError, error } = useKakaoLogin(code, {
-    onSuccess: () => {
-      if (redirect) {
-        navigate(redirect);
-      } else {
-        navigate(PathName.MAP_PAGE);
-      }
-    },
+    onSuccess: kakaoLoginOnSuccessHandler,
   });
 
   const handleBackToLoginButtonClick = () =>
