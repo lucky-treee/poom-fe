@@ -6,7 +6,7 @@ export const useGetUserInformation = () => {
   return useQuery<Profile>({
     queryKey: ['fetchProfile'],
     queryFn: async (): Promise<Profile> => {
-      const { data } = await fetchProfile();
+      const data = await fetchProfile();
 
       return {
         profileImageSrc: data.imageSrc,
