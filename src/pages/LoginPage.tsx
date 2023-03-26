@@ -5,18 +5,22 @@ import KakaoLoginImage from 'assets/auth/kakaoLoginMedium.png';
 import { ReactComponent as BackIcon } from 'assets/components/navigate/back.svg';
 import Typography from 'components/Typography';
 import useQueryKakaoLogin from 'hooks/useQueryKakaoLogin';
-import { LoginFrom } from 'models/auth/LoginFrom';
+import useRedirectPath from 'hooks/useRedirectPath';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 const LoginPage: React.FC = () => {
   const searchParams = new URLSearchParams(document.location.search);
 
-  const from = (searchParams.get('from') as LoginFrom) ?? '';
+  const redirect = searchParams.get('redirect_to') ?? '';
+
+  const { setRedirectPath } = useRedirectPath();
+
+  setRedirectPath(redirect);
 
   const queryKakaoLogin = useQueryKakaoLogin();
 
-  const handleLoginButtonClick = () => queryKakaoLogin(from);
+  const handleLoginButtonClick = () => queryKakaoLogin();
 
   const { t } = useTranslation();
 

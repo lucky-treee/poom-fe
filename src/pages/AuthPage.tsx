@@ -4,6 +4,7 @@ import { AxiosError } from 'axios';
 import LoadingProgressIcon from 'components/LoadingProgressIcon';
 import Typography from 'components/Typography';
 import useKakaoLogin from 'hooks/api/useKakaoLogin';
+import useRedirectPath from 'hooks/useRedirectPath';
 import LoginFailErrorPage from 'pages/error/auth/LoginFailErrorPage';
 import NoKakaoCodeErrorPage from 'pages/error/auth/NoKakaoCodeErrorPage';
 import NotMemberErrorPage from 'pages/error/auth/NotMemberErrorPage';
@@ -15,7 +16,9 @@ const AuthPage: React.FC = () => {
 
   const code = searchParams.get('code') ?? '';
 
-  const redirect = searchParams.get('redirect_to');
+  const { getRedirectPath } = useRedirectPath();
+
+  const redirectPath = getRedirectPath();
 
   const { t } = useTranslation();
 
@@ -32,10 +35,12 @@ const AuthPage: React.FC = () => {
   });
 
   const handleBackToLoginButtonClick = () =>
-    navigate(`${PathName.LOGIN_PAGE}?redirect_to=${redirect}`);
+    navigate(`${PathName.LOGIN_PAGE}?redirect_to=${redirectPath}`);
 
   const handleGoToSignUpPageButtonClick = (email: string) => {
-    navigate(`${PathName.SIGNUP_PAGE}?redirect_to=${redirect}&email=${email}`);
+    navigate(
+      `${PathName.SIGNUP_PAGE}?redirect_to=${redirectPath}&email=${email}`
+    );
   };
 
   if (!code) {
