@@ -2,14 +2,11 @@ import axios from 'axios';
 import config from 'config';
 
 const createService = (baseURL: string) => {
-  const accessToken = localStorage.getItem('accessToken');
-
   const instance = axios.create({
     baseURL,
     withCredentials: true,
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${accessToken}`,
     },
   });
 
