@@ -18,6 +18,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
+          cache: 'yarn'
           
       - name: Create .env
         uses: SpicyPizza/create-envfile@v1.3
@@ -26,7 +27,7 @@ jobs:
           file_name: .env
 
       - name: Install Dependencies
-        run: yarn
+        run: yarn install --frozen-lockfile
 
       - name: Build
         run: yarn build
