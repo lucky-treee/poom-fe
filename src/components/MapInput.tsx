@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ReactComponent as BackIcon } from 'assets/components/navigate/back.svg';
+import { ReactComponent as BackIcon } from 'assets/components/navigate/Back.svg';
 import Button from 'components/Button';
 import LocateButton from 'components/map/LocateButton';
 import ShopMarker from 'components/map/ShopMarker';
