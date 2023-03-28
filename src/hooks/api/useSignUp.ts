@@ -1,13 +1,17 @@
-import { useMutation, UseMutationOptions } from '@tanstack/react-query';
+import { useMutation, UseQueryOptions } from '@tanstack/react-query';
+import { SignUpResponse } from 'models/auth/response';
 import { SignUpForm } from 'models/auth/SignUpForm';
 import { signUp } from 'service/auth';
 
-type UseSignUpOptions = UseMutationOptions<unknown, unknown, SignUpForm>;
+type UseSignUpOptions = Pick<
+  UseQueryOptions<SignUpResponse, Error>,
+  'onSuccess'
+>;
 
-const useSignUp = (options?: UseSignUpOptions) => {
+const useSignUp = ({ onSuccess }: UseSignUpOptions) => {
   return useMutation({
     mutationFn: (formValue: SignUpForm) => signUp(formValue),
-    ...options,
+    onSuccess,
   });
 };
 

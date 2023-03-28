@@ -1,4 +1,5 @@
 export type SignUpForm = {
-  profileImage: FileList | string;
+  photo: string;
   nickname: string;
+  email: string;
 };
