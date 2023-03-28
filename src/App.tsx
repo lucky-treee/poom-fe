@@ -1,6 +1,7 @@
 import React from 'react';
 import PathName from 'constants/PathName';
 import AuthPage from 'pages/AuthPage';
+import BookmarkManagePage from 'pages/BookmarkManagePage';
 import NotFoundErrorPage from 'pages/error/NotFoundErrorPage';
 import LoginPage from 'pages/LoginPage';
 import MapPage from 'pages/MapPage';
@@ -24,6 +25,10 @@ function App() {
         />
         <Route path={PathName.SIGNUP_PAGE} element={<SignUpPage />} />
         <Route path={PathName.PROFILE_PAGE} element={<ProfilePage />} />
+        <Route
+          path={PathName.BOOKMARK_MANAGE_PAGE}
+          element={<BookmarkManagePage />}
+        />
         <Route path={PathName.SHOP_PAGE} element={<ShopPage />} />
         <Route
           path={PathName.SHOP_REGISTER_PAGE}
