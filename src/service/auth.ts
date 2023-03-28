@@ -3,8 +3,9 @@ import { KakaoLoginRequest, SignUpRequest } from 'models/auth/request';
 import {
   KakaoLoginResponse,
   LoginResponse,
-  ProfileResponse,
+  FetchProfileResponse,
   SignUpResponse,
+  FetchBookmarkListResponse,
 } from 'models/auth/response';
 import { SignUpForm } from 'models/auth/SignUpForm';
 import { AuthService } from 'service';
@@ -26,7 +27,7 @@ export const kakaoLogin = async (kakaoLoginRequest: KakaoLoginRequest) => {
 };
 
 export const fetchProfile = async () => {
-  const { data } = await AuthService.get<ProfileResponse>('/v1/members');
+  const { data } = await AuthService.get<FetchProfileResponse>('/v1/members');
 
   return data;
 };
@@ -39,6 +40,14 @@ export const signUp = async (formValue: SignUpForm) => {
   >('/v1/auth/signup', {
     ...formValue,
   });
+
+  return data;
+};
+
+export const fetchBookmarkList = async () => {
+  const { data } = await AuthService.get<FetchBookmarkListResponse>(
+    '/v1/bookmarks'
+  );
 
   return data;
 };

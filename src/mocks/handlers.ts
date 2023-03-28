@@ -11,4 +11,64 @@ export const handlers = [
       })
     );
   }),
+
+  rest.get('/api/auth/v1/bookmarks', (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json({
+        bookmarkList: [
+          {
+            id: 12,
+            name: '쓰레기 없는 행복 카페',
+            address: '서울시 땡땡구 204-12 현대빌딩 301호, 20301-어쩌구 저쩌구',
+            hashtag: 'NICE',
+            category: '카페, 커피',
+            previewImageSrc:
+              'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/R%C3%B6e_g%C3%A5rd_caf%C3%A9_2.jpg/2880px-R%C3%B6e_g%C3%A5rd_caf%C3%A9_2.jpg',
+          },
+          {
+            id: 13,
+            name: '길거리 산뜻 카페',
+            address:
+              '서울시 어쩌구 107-60, 장사 잘되는 우리 빌딩 골목 옆 204호',
+            hashtag: 'GOOD',
+            category: '카페, 커피',
+          },
+          {
+            id: 24,
+            name: '찰리 푸스의 맛있는 카페 이름이 조금 길어지면 두줄로 표현되고 끝은 잘려야 하는 카페',
+            address: '서울시 박박구 72-1, 204호',
+            hashtag: 'QUALITY',
+            category: '카페, 커피',
+            previewImageSrc:
+              'https://images.unsplash.com/photo-1509042239860-f550ce710b93?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
+          },
+          {
+            id: 35,
+            name: '카페 리조또와 라캄파넬라',
+            address: '서울시 저쩌구 방이대로 157-18, 1층',
+            hashtag: 'NICE',
+            category: '카페, 커피',
+            previewImageSrc:
+              'https://images.unsplash.com/photo-1481833761820-0509d3217039?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80',
+          },
+          {
+            id: 16,
+            name: '쓰레기 없는 행복 카페',
+            address: '서울시 땡땡구 204-12 현대빌딩 301호, 20301-어쩌구 저쩌구',
+            hashtag: 'NICE',
+            category: '카페, 커피',
+          },
+          {
+            id: 27,
+            name: '길거리 산뜻 카페',
+            address:
+              '서울시 어쩌구 107-60, 장사 잘되는 우리 빌딩 골목 옆 204호',
+            hashtag: 'GOOD',
+            category: '카페, 커피',
+          },
+        ],
+      })
+    );
+  }),
 ];
