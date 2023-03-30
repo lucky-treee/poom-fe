@@ -26,12 +26,12 @@ const Button: React.FC<ButtonProps> = (props) => {
     ...rest
   } = props;
 
-  const defaultStyle = 'flex justify-center items-center rounded-md';
+  const defaultStyle = 'flex justify-center items-center';
 
   if (variant === 'main') {
     return (
       <button
-        className={`${defaultStyle} bg-primary hover:bg-primary-hover text-white ${Size[size]} ${className}`}
+        className={`${defaultStyle} bg-primary hover:bg-primary-hover text-white rounded-md ${Size[size]} ${className}`}
         {...rest}
       >
         {isLoading ? <LoadingProgressIcon className="fill-white" /> : children}
@@ -41,7 +41,7 @@ const Button: React.FC<ButtonProps> = (props) => {
   if (variant === 'outlined') {
     return (
       <button
-        className={`${defaultStyle} hover:bg-neutral-100 border-border-gray hover:border-text border ${Size[size]} ${className}`}
+        className={`${defaultStyle} hover:bg-neutral-100 border-border-gray hover:border-text border rounded-md ${Size[size]} ${className}`}
         {...rest}
       >
         {isLoading ? (
