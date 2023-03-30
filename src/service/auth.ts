@@ -6,6 +6,7 @@ import {
   FetchProfileResponse,
   SignUpResponse,
   FetchBookmarkListResponse,
+  FetchUserReviewListResponse,
 } from 'models/auth/response';
 import { SignUpForm } from 'models/auth/SignUpForm';
 import { AuthService } from 'service';
@@ -47,6 +48,14 @@ export const signUp = async (formValue: SignUpForm) => {
 export const fetchBookmarkList = async () => {
   const { data } = await AuthService.get<FetchBookmarkListResponse>(
     '/v1/bookmarks'
+  );
+
+  return data;
+};
+
+export const fetchUserReviewList = async () => {
+  const { data } = await AuthService.get<FetchUserReviewListResponse>(
+    '/v1/reviews'
   );
 
   return data;
