@@ -26,3 +26,23 @@ type BookmarkResponse = {
 export type FetchBookmarkListResponse = {
   bookmarkList: BookmarkResponse[];
 };
+
+export type FetchUserReviewListResponse = {
+  reviewList: ReviewResponse[];
+  pagination: {
+    total: number;
+    page: number;
+    size: number;
+  };
+};
+
+export type ReviewResponse = {
+  id: number;
+  shop: {
+    name: string;
+    category: string;
+  };
+  content: string;
+  imgSrc: string[];
+  updatedAt: number;
+};
