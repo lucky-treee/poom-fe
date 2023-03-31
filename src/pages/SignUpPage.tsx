@@ -1,6 +1,6 @@
 import React from 'react';
 import PathName from 'constants/PathName';
-import { ReactComponent as BackIcon } from 'assets/components/navigate/back.svg';
+import { ReactComponent as BackIcon } from 'assets/components/navigate/Back.svg';
 import SignUpForm from 'components/auth/SignUpForm';
 import Typography from 'components/Typography';
 import { useTranslation } from 'react-i18next';

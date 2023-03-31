@@ -15,7 +15,7 @@ const SectionButton: React.FC<SectionButtonProps> = (props) => {
 
   return (
     <Link
-      className={`flex flex-row justify-between items-center px-7 py-4 ${className}`}
+      className={`flex flex-row justify-between items-center px-8 py-4 ${className}`}
       to={disabled ? to : ''}
     >
       <Typography className={disabled ? '' : 'text-gray-400'} type="subtitle">

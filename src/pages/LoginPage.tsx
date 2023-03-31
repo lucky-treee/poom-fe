@@ -2,7 +2,7 @@ import React from 'react';
 import Terms from 'constants/Terms';
 import { ReactComponent as PoomLogo } from 'assets/app/poom.svg';
 import KakaoLoginImage from 'assets/auth/kakaoLoginMedium.png';
-import { ReactComponent as BackIcon } from 'assets/components/navigate/back.svg';
+import { ReactComponent as BackIcon } from 'assets/components/navigate/Back.svg';
 import Typography from 'components/Typography';
 import useQueryKakaoLogin from 'hooks/useQueryKakaoLogin';
 import useRedirectPath from 'hooks/useRedirectPath';

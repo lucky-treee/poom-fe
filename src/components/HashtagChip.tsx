@@ -1,9 +1,9 @@
 import React from 'react';
 import Typography from 'components/Typography';
+import { HashtagOptions } from 'models/auth/response';
+import { useTranslation } from 'react-i18next';
 
 type SizeOptions = 'default' | 'small';
-
-type HashtagOptions = 'GOOD' | 'CLEAN' | 'NICE' | 'CHEAP' | 'QUALITY';
 
 type HashtagChipProps = {
   hashtag: HashtagOptions;
@@ -27,6 +27,16 @@ const Color: Record<HashtagOptions, string> = {
 const HashtagChip: React.FC<HashtagChipProps> = (props) => {
   const { hashtag = 'GOOD', size = 'default', className } = props;
 
+  const { t } = useTranslation();
+
+  const hashTagText: Record<HashtagOptions, string> = {
+    GOOD: t('hashtag-good'),
+    CLEAN: t('hashtag-clean'),
+    NICE: t('hashtag-nice'),
+    CHEAP: t('hashtag-cheap'),
+    QUALITY: t('hashtag-quality'),
+  };
+
   const defaultStyle =
     'flex justify-center items-center rounded-full text-white w-fit';
 
@@ -35,7 +45,7 @@ const HashtagChip: React.FC<HashtagChipProps> = (props) => {
       <div
         className={`${defaultStyle} ${Color[hashtag]} ${Size[size]} ${className}`}
       >
-        <Typography type="code">{hashtag}</Typography>
+        <Typography type="code">{hashTagText[hashtag]}</Typography>
       </div>
     );
   }
@@ -45,7 +55,7 @@ const HashtagChip: React.FC<HashtagChipProps> = (props) => {
       <div
         className={`${defaultStyle} ${Color[hashtag]} ${Size[size]} ${className}`}
       >
-        <Typography type="caption">{hashtag}</Typography>
+        <Typography type="caption">{hashTagText[hashtag]}</Typography>
       </div>
     );
   }
@@ -54,7 +64,7 @@ const HashtagChip: React.FC<HashtagChipProps> = (props) => {
     <div
       className={`${defaultStyle} ${Color[hashtag]} ${Size[size]} ${className}`}
     >
-      {hashtag}
+      {hashTagText[hashtag]}
     </div>
   );
 };

@@ -28,25 +28,25 @@ const ProfilePage: React.FC = () => {
 
   return (
     <div className="w-screen h-screen">
-      <Typography className="px-6 py-4" type="title">
+      <Typography className="px-8 pt-8 pb-4" type="title">
         {t('my-page-header')}
       </Typography>
       {userInformation ? (
-        <Profile className="px-6 py-4" userInformation={userInformation} />
+        <Profile className="px-8 py-4" userInformation={userInformation} />
       ) : (
-        <LoginAlertProfile className="px-6 py-8 min-h-[128px] " />
+        <LoginAlertProfile className="px-8 py-4 min-h-[128px] " />
       )}
       <SectionButton
         disabled={isLogin}
         className="border-t border-gray-200"
         text={t('favorite-section-title')}
-        to={PathName.FAVORITE_MANGE_PAGE}
+        to={PathName.BOOKMARK_MANAGE_PAGE}
       />
       <SectionButton
         disabled={isLogin}
         className="border-t border-b border-gray-200"
         text={t('review-section-title')}
-        to={PathName.REVIEW_MANGE_PAGE}
+        to={PathName.REVIEW_MANAGE_PAGE}
       />
       <Navigator menu="profile" />
     </div>
