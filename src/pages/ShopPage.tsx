@@ -1,4 +1,5 @@
 import React from 'react';
+import PathName from 'constants/PathName';
 import LoadingProgressIcon from 'components/LoadingProgressIcon';
 import LocalDate from 'components/LocalDate';
 import ReviewContent from 'components/ReviewContent';
@@ -6,10 +7,9 @@ import Shop from 'components/shop/Shop';
 import Typography from 'components/Typography';
 import { useFetchShopReviewList } from 'hooks/api/useFetchShopReviewList';
 import { useGetShopById } from 'hooks/api/useGetShopById';
+import { useGetUserInformation } from 'hooks/api/useGetUserInformation';
 import { ShopReview } from 'models/auth/Review';
 import { useNavigate, useParams } from 'react-router';
-import { useGetUserInformation } from 'hooks/api/useGetUserInformation';
-import PathName from 'constants/PathName';
 
 const ShopReviewHeader: React.FC<{ review: ShopReview }> = ({ review }) => {
   return (
@@ -51,7 +51,6 @@ const ShopPage: React.FC = () => {
   const handleClickReviewWrite = () => {
     if (!isLogin) {
       navigate(PathName.LOGIN_PAGE);
-      return;
     }
   };
 
@@ -68,7 +67,8 @@ const ShopPage: React.FC = () => {
       <div className="flex justify-between items-center mb-4">
         <Typography type="subtitle">리뷰</Typography>
         <button
-          className=" text-primary text-sm tracking-[-0.04em]"
+          type="button"
+          className="text-primary text-sm tracking-[-0.04em]"
           onClick={handleClickReviewWrite}
         >
           리뷰 남기기
