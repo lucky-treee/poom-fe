@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReactComponent as BackArrowIcon } from 'assets/components/navigate/back.svg';
+import { ReactComponent as BackArrowIcon } from 'assets/components/navigate/Back.svg';
 import LoadingProgressIcon from 'components/LoadingProgressIcon';
 import Shop from 'components/shop/Shop';
 import { useGetShopById } from 'hooks/api/useGetShopById';
