@@ -1,3 +1,4 @@
+import { Shop } from 'models/shop/Shop';
 import { ShopRegisterRequest } from 'models/shop/request';
 import { ShopResponse } from 'models/shop/response';
 import { ShopService } from 'service';
@@ -20,4 +21,8 @@ export const fetchShopList = (
 
 export const registerShop = (shopRegisterRequest: ShopRegisterRequest) => {
   return ShopService.post('/v1/shops/shop', shopRegisterRequest);
+};
+
+export const getShopById = (id: number) => {
+  return ShopService.get<Shop>(`/v1/shops/shop?id=${id}`);
 };
