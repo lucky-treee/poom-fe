@@ -26,3 +26,9 @@ export const registerShop = (shopRegisterRequest: ShopRegisterRequest) => {
 export const getShopById = (id: number) => {
   return ShopService.get<Shop>(`/v1/shops/shop?id=${id}`);
 };
+
+export const fetchShopReviewList = async (id: number) => {
+  const { data } = await ShopService.get(`/v1/shops/shop/review?id=${id}`);
+
+  return data;
+};
