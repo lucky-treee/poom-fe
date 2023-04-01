@@ -1,62 +1,60 @@
 import React from 'react';
 import PathName from 'constants/PathName';
+import { AxiosError } from 'axios';
 import LoadingProgressIcon from 'components/LoadingProgressIcon';
 import Typography from 'components/Typography';
-import useLogin from 'hooks/api/useLogin';
-import { LoginFrom } from 'models/auth/LoginFrom';
+import useKakaoLogin from 'hooks/api/useKakaoLogin';
+import useAccessToken from 'hooks/useAccessToken';
+import useRedirectPath from 'hooks/useRedirectPath';
+import LoginFailErrorPage from 'pages/error/auth/LoginFailErrorPage';
+import NoKakaoCodeErrorPage from 'pages/error/auth/NoKakaoCodeErrorPage';
+import NotMemberErrorPage from 'pages/error/auth/NotMemberErrorPage';
 import { useTranslation } from 'react-i18next';
-import { generatePath, useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 
 const AuthPage: React.FC = () => {
   const searchParams = new URLSearchParams(document.location.search);
 
-  const code = searchParams.get('code');
+  const code = searchParams.get('code') ?? '';
 
-  const from = searchParams.get('state') as LoginFrom;
+  const { getRedirectPath } = useRedirectPath();
+
+  const redirectPath = getRedirectPath();
 
   const { t } = useTranslation();
 
   const navigate = useNavigate();
 
-  const { isLoading, isError, error } = useLogin(code, {
-    onSuccess: () => {
-      switch (from) {
-        case 'review':
-          navigate(PathName.MAP_PAGE);
-          break;
-        case 'profile':
-          navigate(PathName.PROFILE_PAGE);
-          break;
-        case 'signUp':
-          navigate(PathName.SIGNUP_PAGE);
-          break;
-        default:
-          navigate(PathName.PROFILE_PAGE);
-          break;
-      }
-    },
+  const setAccessToken = useAccessToken();
+
+  const kakaoLoginOnSuccessHandler = (accessToken: string) => {
+    setAccessToken(accessToken);
+
+    if (redirectPath) {
+      navigate(redirectPath);
+    } else {
+      navigate(PathName.MAP_PAGE);
+    }
+  };
+
+  const { isLoading, isError, error } = useKakaoLogin(code, {
+    onSuccess: kakaoLoginOnSuccessHandler,
   });
 
   const handleBackToLoginButtonClick = () =>
-    navigate(generatePath(PathName.LOGIN_PAGE, { from }));
+    navigate(`${PathName.LOGIN_PAGE}?redirect_to=${redirectPath}`);
+
+  const handleGoToSignUpPageButtonClick = (email: string) => {
+    navigate(
+      `${PathName.SIGNUP_PAGE}?redirect_to=${redirectPath}&email=${email}`
+    );
+  };
 
   if (!code) {
     return (
-      <div className="flex justify-between items-center flex-col pt-12 pl-12 pr-12 pb-12 h-screen">
-        <div className="flex flex-col gap-3">
-          <Typography type="title">{t('authenticate-fail-title')}</Typography>
-          <Typography type="body">
-            {t('authenticate-fail-message-no-kakao-code')}
-          </Typography>
-        </div>
-        <button
-          className="px-6 py-2 rounded-md bg-primary hover:pg-primary-hover text-white w-fit"
-          type="button"
-          onClick={handleBackToLoginButtonClick}
-        >
-          {t('back-to-login-button-text')}
-        </button>
-      </div>
+      <NoKakaoCodeErrorPage
+        onBackToLoginButtonClick={handleBackToLoginButtonClick}
+      />
     );
   }
 
@@ -69,25 +67,22 @@ const AuthPage: React.FC = () => {
   }
 
   if (isError) {
+    if (error instanceof AxiosError && error.response?.status === 404) {
+      const email = error.response.data;
+
+      return (
+        <NotMemberErrorPage
+          email={email}
+          onGoToSignUpPageButtonClick={handleGoToSignUpPageButtonClick}
+        />
+      );
+    }
+
     return (
-      <div className="flex justify-between items-center flex-col pt-12 pl-12 pr-12 pb-12 min-h-screen">
-        <div className="flex w-full flex-col gap-3">
-          <Typography type="title">{t('authenticate-fail-title')}</Typography>
-          <Typography type="body">
-            {t('authenticate-fail-message-server-error')}
-          </Typography>
-          <code className="font-mono w-full break-words">
-            {JSON.stringify(error)}
-          </code>
-        </div>
-        <button
-          className="mt-6 px-6 py-2 rounded-md bg-primary hover:pg-primary-hover text-white w-fit"
-          type="button"
-          onClick={handleBackToLoginButtonClick}
-        >
-          {t('back-to-login-button-text')}
-        </button>
-      </div>
+      <LoginFailErrorPage
+        error={error as Error}
+        onBackToLoginButtonClick={handleBackToLoginButtonClick}
+      />
     );
   }
 

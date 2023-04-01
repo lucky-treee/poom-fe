@@ -1,10 +1,12 @@
 import React from 'react';
 import PathName from 'constants/PathName';
 import AuthPage from 'pages/AuthPage';
+import BookmarkManagePage from 'pages/BookmarkManagePage';
 import NotFoundErrorPage from 'pages/error/NotFoundErrorPage';
 import LoginPage from 'pages/LoginPage';
 import MapPage from 'pages/MapPage';
 import ProfilePage from 'pages/ProfilePage';
+import ReviewManagePage from 'pages/ReviewManagePage';
 import ShopPage from 'pages/ShopPage';
 import ShopRegisterPage from 'pages/ShopRegisterPage';
 import SignUpPage from 'pages/SignUpPage';
@@ -24,6 +26,14 @@ function App() {
         />
         <Route path={PathName.SIGNUP_PAGE} element={<SignUpPage />} />
         <Route path={PathName.PROFILE_PAGE} element={<ProfilePage />} />
+        <Route
+          path={PathName.BOOKMARK_MANAGE_PAGE}
+          element={<BookmarkManagePage />}
+        />
+        <Route
+          path={PathName.REVIEW_MANAGE_PAGE}
+          element={<ReviewManagePage />}
+        />
         <Route path={PathName.SHOP_PAGE} element={<ShopPage />} />
         <Route
           path={PathName.SHOP_REGISTER_PAGE}

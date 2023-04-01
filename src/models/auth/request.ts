@@ -1,4 +1,10 @@
 export type SignUpRequest = {
-  profileImage: FileList | string;
+  photo: string;
   nickname: string;
+  email: string;
+};
+
+export type KakaoLoginRequest = {
+  code: string;
+  redirect_uri: string;
 };

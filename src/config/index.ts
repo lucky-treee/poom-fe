@@ -2,7 +2,7 @@ const isLocalEnv = import.meta.env.DEV;
 
 const shopApiHost = 'https://poom-shop.c0dewave.com';
 
-const authApiHost = 'https://poom-auth.c0dewave.com';
+const authApiHost = 'https://poom-member.c0dewave.com';
 
 const config = {
   shopApiHost: isLocalEnv ? '/api/shop' : shopApiHost,

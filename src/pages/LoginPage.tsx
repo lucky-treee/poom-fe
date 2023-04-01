@@ -2,21 +2,25 @@ import React from 'react';
 import Terms from 'constants/Terms';
 import { ReactComponent as PoomLogo } from 'assets/app/poom.svg';
 import KakaoLoginImage from 'assets/auth/kakaoLoginMedium.png';
-import { ReactComponent as BackIcon } from 'assets/components/navigate/back.svg';
+import { ReactComponent as BackIcon } from 'assets/components/navigate/Back.svg';
 import Typography from 'components/Typography';
-import useKakaoLogin from 'hooks/useKakaoLogin';
-import { LoginFrom } from 'models/auth/LoginFrom';
+import useQueryKakaoLogin from 'hooks/useQueryKakaoLogin';
+import useRedirectPath from 'hooks/useRedirectPath';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 const LoginPage: React.FC = () => {
   const searchParams = new URLSearchParams(document.location.search);
 
-  const from = (searchParams.get('from') as LoginFrom) ?? '';
+  const redirect = searchParams.get('redirect_to') ?? '';
 
-  const queryKakaoLogin = useKakaoLogin();
+  const { setRedirectPath } = useRedirectPath();
 
-  const handleLoginButtonClick = () => queryKakaoLogin(from);
+  setRedirectPath(redirect);
+
+  const queryKakaoLogin = useQueryKakaoLogin();
+
+  const handleLoginButtonClick = () => queryKakaoLogin();
 
   const { t } = useTranslation();
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReactComponent as BackIcon } from 'assets/components/navigate/back.svg';
+import { ReactComponent as BackIcon } from 'assets/components/navigate/Back.svg';
 import ShopRegisterForm from 'components/ShopRegisterForm';
 import Typography from 'components/Typography';
 import { useTranslation } from 'react-i18next';
