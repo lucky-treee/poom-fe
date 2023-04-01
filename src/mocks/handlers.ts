@@ -101,4 +101,27 @@ export const handlers = [
       })
     );
   }),
+
+  rest.get('/api/shop/v1/shops/shop', async (req, res, ctx) => {
+    const shopId = req.url.searchParams.get('id');
+
+    const shop: Shop = {
+      shopName: '리필리',
+      category: 'REFILL',
+      contact: '010-9876-5432',
+      flagshipProduct: '리필용 주방세제',
+      hashtag: 'GOOD',
+      holiday: 'SUN',
+      homepage: 'http://localhost:5173',
+      lat: 37.4842556832564,
+      lng: 126.949050365278,
+      operationEnd: '20:00',
+      operationStart: '10:00',
+      photo: '',
+      sns: '',
+      shopAddress: '행복시 행복로 10길 89 1층',
+    };
+
+    return res(ctx.status(200), ctx.json(shop));
+  }),
 ];
