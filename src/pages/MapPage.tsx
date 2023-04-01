@@ -109,7 +109,7 @@ const MapPage: React.FC = () => {
             return (
               <ShopMarker
                 onClick={() => handleShopClick(index)}
-                key={shop.name}
+                key={shop.shopName}
                 shopLocation={{ lat: shop.lat, lng: shop.lng }}
               />
             );
