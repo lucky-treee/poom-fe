@@ -1,5 +1,5 @@
 import { ShopRegisterRequest } from 'models/shop/request';
-import { ShopResponse } from 'models/shop/response';
+import { ShopResponse, ShopReviewListResponse } from 'models/shop/response';
 import { Shop } from 'models/shop/Shop';
 import { ShopService } from 'service';
 
@@ -28,7 +28,9 @@ export const getShopById = (id: number) => {
 };
 
 export const fetchShopReviewList = async (id: number) => {
-  const { data } = await ShopService.get(`/v1/shops/shop/review?id=${id}`);
+  const { data } = await ShopService.get<ShopReviewListResponse>(
+    `/v1/shops/shop/review?id=${id}`
+  );
 
   return data;
 };

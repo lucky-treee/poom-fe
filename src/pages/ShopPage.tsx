@@ -6,10 +6,10 @@ import Shop from 'components/shop/Shop';
 import Typography from 'components/Typography';
 import { useFetchShopReviewList } from 'hooks/api/useFetchShopReviewList';
 import { useGetShopById } from 'hooks/api/useGetShopById';
-import { Review } from 'models/auth/Review';
+import { Review, ShopReview } from 'models/auth/Review';
 import { useParams } from 'react-router';
 
-const ShopReviewHeader: React.FC<{ review: Review }> = ({ review }) => {
+const ShopReviewHeader: React.FC<{ review: ShopReview }> = ({ review }) => {
   return (
     <h1
       id="review-title"

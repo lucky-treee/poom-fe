@@ -127,11 +127,6 @@ export const handlers = [
       ctx.status(200),
       ctx.json({
         reviewList: [0, 1, 2, 3, 4, 5, 6, 7].map(createReview),
-        pagination: {
-          total: 12,
-          page: 0,
-          size: 5,
-        },
       })
     );
   }),
