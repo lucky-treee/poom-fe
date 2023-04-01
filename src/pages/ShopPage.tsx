@@ -55,7 +55,7 @@ const ShopPage: React.FC = () => {
   };
 
   return (
-    <div className="w-screen h-screen px-6 py-4">
+    <div className="w-screen px-6 py-4">
       {isLoadingShop ? (
         <div className="flex justify-center items-center w-full h-full">
           <LoadingProgressIcon />
