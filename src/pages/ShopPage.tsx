@@ -7,7 +7,9 @@ import Typography from 'components/Typography';
 import { useFetchShopReviewList } from 'hooks/api/useFetchShopReviewList';
 import { useGetShopById } from 'hooks/api/useGetShopById';
 import { ShopReview } from 'models/auth/Review';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
+import { useGetUserInformation } from 'hooks/api/useGetUserInformation';
+import PathName from 'constants/PathName';
 
 const ShopReviewHeader: React.FC<{ review: ShopReview }> = ({ review }) => {
   return (
@@ -31,13 +33,27 @@ const ShopReviewHeader: React.FC<{ review: ShopReview }> = ({ review }) => {
 };
 
 const ShopPage: React.FC = () => {
+  const navigate = useNavigate();
+
   const { id } = useParams<{ id?: string }>() ?? {};
 
   const { data: shop, isLoading: isLoadingShop } = useGetShopById(
     parseInt(id!, 10)
   );
+
   const { data: reviewList, isLoading: isLoadingReviewList } =
     useFetchShopReviewList(parseInt(id!, 10));
+
+  const { data: userInformation } = useGetUserInformation();
+
+  const isLogin = Boolean(userInformation);
+
+  const handleClickReviewWrite = () => {
+    if (!isLogin) {
+      navigate(PathName.LOGIN_PAGE);
+      return;
+    }
+  };
 
   return (
     <div className="w-screen h-screen px-6 py-4">
@@ -48,6 +64,16 @@ const ShopPage: React.FC = () => {
       ) : (
         <Shop shop={shop!} review={reviewList?.length ?? 0} />
       )}
+
+      <div className="flex justify-between items-center mb-4">
+        <Typography type="subtitle">리뷰</Typography>
+        <button
+          className=" text-primary text-sm tracking-[-0.04em]"
+          onClick={handleClickReviewWrite}
+        >
+          리뷰 남기기
+        </button>
+      </div>
 
       {isLoadingReviewList ? (
         <div className="flex justify-center items-center w-full h-full">
