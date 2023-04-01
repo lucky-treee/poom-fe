@@ -36,6 +36,25 @@ export type FetchUserReviewListResponse = {
   };
 };
 
+export type ShopReviewListResponse = {
+  reviewList: ShopReviewListResponse[];
+};
+
+export type ShopReviewResponse = {
+  id: number;
+  shop: {
+    name: string;
+    category: string;
+  };
+  profile: {
+    nickname: string;
+    profileImageSrc: string;
+  };
+  content: string;
+  imgSrc: string[];
+  updatedAt: number;
+};
+
 export type ReviewResponse = {
   id: number;
   shop: {

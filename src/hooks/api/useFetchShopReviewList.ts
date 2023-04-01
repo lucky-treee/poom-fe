@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
-import { ReviewList } from 'models/auth/Review';
+import { ShopReviewListResponse } from 'models/auth/response';
 import { fetchShopReviewList } from 'service/shop';
 
 export const useFetchShopReviewList = (id: number) => {
-  return useQuery<ReviewList, Error>({
+  return useQuery<ShopReviewListResponse, Error>({
     queryKey: ['fetchShopReviewList', id],
     queryFn: async () => {
       const { reviewList } = await fetchShopReviewList(id);

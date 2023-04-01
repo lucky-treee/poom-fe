@@ -4,10 +4,6 @@ export type Review = {
     name: string;
     category: string;
   };
-  profile: {
-    nickname: string;
-    profileImageSrc: string;
-  };
   content: string;
   imgSrc: string[];
   updatedAt: number;
