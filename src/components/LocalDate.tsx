@@ -15,7 +15,7 @@ const LocalDate: React.FC<LocalDateProps> = ({ date }) => {
   return (
     <Typography
       type="caption"
-      className="text-gray-500"
+      className="text-border-gray tracking-[-0.04em]"
     >{`${year}.${month}.${day}`}</Typography>
   );
 };
