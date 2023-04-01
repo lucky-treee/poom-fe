@@ -1,6 +1,6 @@
-import { Shop } from 'models/shop/Shop';
 import { ShopRegisterRequest } from 'models/shop/request';
 import { ShopResponse } from 'models/shop/response';
+import { Shop } from 'models/shop/Shop';
 import { ShopService } from 'service';
 
 export const fetchShopList = (

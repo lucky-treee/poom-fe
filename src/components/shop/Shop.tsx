@@ -1,12 +1,12 @@
 import React from 'react';
 import { ReactComponent as HeartIcon } from 'assets/components/Heart.svg';
-import Typography from 'components/Typography';
-import { useTranslation } from 'react-i18next';
 import HashtagChip from 'components/HashtagChip';
-import { Shop } from 'models/shop/Shop';
+import Typography from 'components/Typography';
+import { Shop as ShopType } from 'models/shop/Shop';
+import { useTranslation } from 'react-i18next';
 
 type ShopProps = {
-  shop: Shop;
+  shop: ShopType;
   review: number;
 };
 

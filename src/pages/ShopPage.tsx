@@ -1,9 +1,9 @@
 import React from 'react';
 import { ReactComponent as BackArrowIcon } from 'assets/components/navigate/back.svg';
-import { useNavigate, useParams } from 'react-router';
+import LoadingProgressIcon from 'components/LoadingProgressIcon';
 import Shop from 'components/shop/Shop';
 import { useGetShopById } from 'hooks/api/useGetShopById';
-import LoadingProgressIcon from 'components/LoadingProgressIcon';
+import { useNavigate, useParams } from 'react-router';
 
 const ShopPage: React.FC = () => {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ const ShopPage: React.FC = () => {
 
   return (
     <div className="w-screen h-screen">
-      <button className="mx-[29px] py-4" onClick={handleGoBack}>
+      <button type="button" className="mx-[29px] py-4" onClick={handleGoBack}>
         <BackArrowIcon />
       </button>
       {isLoading ? (
