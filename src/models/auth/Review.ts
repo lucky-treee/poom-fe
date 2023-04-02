@@ -10,19 +10,11 @@ export type Review = {
 };
 
 export type ShopReview = {
-  id: number;
-  shop: {
-    name: string;
-    category: string;
-  };
   profile: {
     nickname: string;
     profileImageSrc: string;
   };
-  content: string;
-  imgSrc: string[];
-  updatedAt: number;
-};
+} & Review;
 
 export type ReviewList = Review[];
 export type ShopReviewList = ShopReview[];
