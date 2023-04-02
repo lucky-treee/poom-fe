@@ -1,6 +1,9 @@
 import { ShopRegisterRequest } from 'models/shop/request';
-import { ShopResponse, ShopReviewListResponse } from 'models/shop/response';
-import { Shop } from 'models/shop/Shop';
+import {
+  ShopResponse,
+  FetchShopReviewListResponse,
+  FetchShopResponse,
+} from 'models/shop/response';
 import { ShopService } from 'service';
 
 export const fetchShopList = (
@@ -24,12 +27,19 @@ export const registerShop = (shopRegisterRequest: ShopRegisterRequest) => {
 };
 
 export const getShopById = (id: number) => {
-  return ShopService.get<Shop>(`/v1/shops/shop?id=${id}`);
+  return ShopService.get<FetchShopResponse>('/v1/shops/shop', {
+    params: { id },
+  });
 };
 
 export const fetchShopReviewList = async (id: number) => {
-  const { data } = await ShopService.get<ShopReviewListResponse>(
-    `/v1/shops/shop/review?id=${id}`
+  const { data } = await ShopService.get<FetchShopReviewListResponse>(
+    '/v1/shops/shop/review',
+    {
+      params: {
+        id,
+      },
+    }
   );
 
   return data;
