@@ -1,16 +1,6 @@
 export type Shop = {
-  shopName: string;
-  category: string;
-  hashtag: string;
-  shopAddress: string;
-  photo: string;
-  contact: string;
-  homepage: string;
-  flagshipProduct: string;
-  sns: string;
+  name: string;
+  status: 'ENABLE';
   lat: number;
   lng: number;
-  operationStart: string;
-  operationEnd: string;
-  holiday: string;
 };
