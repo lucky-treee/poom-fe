@@ -3,7 +3,7 @@ import { getShopById } from 'service/shop';
 
 export const useGetShopById = (id: number) => {
   return useQuery({
-    queryKey: ['shop', id],
+    queryKey: ['fetchedShopById', id],
     queryFn: async () => {
       const { data } = await getShopById(id);
 
