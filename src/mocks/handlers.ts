@@ -1,4 +1,4 @@
-import { Shop } from 'models/shop/Shop';
+import { FetchShopResponse } from 'models/shop/response';
 import { rest } from 'msw';
 
 export const handlers = [
@@ -134,7 +134,7 @@ export const handlers = [
   rest.get('/api/shop/v1/shops/shop', async (req, res, ctx) => {
     const shopId = req.url.searchParams.get('id');
 
-    const shop: Shop = {
+    const shop: FetchShopResponse = {
       shopName: '리필리',
       category: 'REFILL',
       contact: '010-9876-5432',
