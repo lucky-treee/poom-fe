@@ -3,12 +3,12 @@ import { ReactComponent as HeartIcon } from 'assets/components/Heart.svg';
 import { ReactComponent as BackArrowIcon } from 'assets/components/navigate/Back.svg';
 import HashtagChip from 'components/HashtagChip';
 import Typography from 'components/Typography';
-import { Shop as ShopType } from 'models/shop/Shop';
+import { FetchShopResponse } from 'models/shop/response';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 
 type ShopProps = {
-  shop: ShopType;
+  shop: FetchShopResponse;
   review: number;
 };
 
@@ -32,8 +32,8 @@ const Shop: React.FC<ShopProps> = ({ shop, review }) => {
           <HeartIcon />
         </div>
       </div>
-      <div className="w-[95%] text-text mt-2">
-        <Typography type="caption" className="text-disabled">
+      <div className="text-text mt-2">
+        <Typography type="caption" className="text-gray-500">
           {shop.flagshipProduct}
         </Typography>
         <Typography type="body" className="inline">
