@@ -1,7 +1,6 @@
 import React from 'react';
 import PathName from 'constants/PathName';
 import LoadingProgressIcon from 'components/LoadingProgressIcon';
-import LocalDate from 'components/LocalDate';
 import ReviewContent from 'components/ReviewContent';
 import Shop from 'components/shop/Shop';
 import Typography from 'components/Typography';
@@ -9,6 +8,7 @@ import { useFetchShopReviewList } from 'hooks/api/useFetchShopReviewList';
 import { useGetShopById } from 'hooks/api/useGetShopById';
 import { useGetUserInformation } from 'hooks/api/useGetUserInformation';
 import { ShopReview } from 'models/auth/Review';
+import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router';
 
 const ShopReviewHeader: React.FC<{ review: ShopReview }> = ({ review }) => {
@@ -27,7 +27,6 @@ const ShopReviewHeader: React.FC<{ review: ShopReview }> = ({ review }) => {
       <Typography type="body" className="tracking-[-0.04em]">
         {review.profile.nickname}
       </Typography>
-      <LocalDate date={review.updatedAt} />
     </h1>
   );
 };
@@ -37,11 +36,11 @@ const ShopPage: React.FC = () => {
 
   const { id } = useParams<{ id?: string }>() ?? {};
 
-  const { data: shop, isLoading: isLoadingShop } = useGetShopById(
+  const { data: shop, isLoading: isShopLoading } = useGetShopById(
     parseInt(id!, 10)
   );
 
-  const { data: reviewList, isLoading: isLoadingReviewList } =
+  const { data: reviewList, isLoading: isReviewListLoading } =
     useFetchShopReviewList(parseInt(id!, 10));
 
   const { data: userInformation } = useGetUserInformation();
@@ -54,9 +53,11 @@ const ShopPage: React.FC = () => {
     }
   };
 
+  const { t } = useTranslation();
+
   return (
     <div className="w-screen px-6 py-4">
-      {isLoadingShop ? (
+      {isShopLoading ? (
         <div className="flex justify-center items-center w-full h-full">
           <LoadingProgressIcon />
         </div>
@@ -65,17 +66,17 @@ const ShopPage: React.FC = () => {
       )}
 
       <div className="flex justify-between items-center mb-4">
-        <Typography type="subtitle">리뷰</Typography>
+        <Typography type="subtitle">{t('review')}</Typography>
         <button
           type="button"
           className="text-primary text-sm tracking-[-0.04em]"
           onClick={handleClickReviewWrite}
         >
-          리뷰 남기기
+          {t('register-review')}
         </button>
       </div>
 
-      {isLoadingReviewList ? (
+      {isReviewListLoading ? (
         <div className="flex justify-center items-center w-full h-full">
           <LoadingProgressIcon />
         </div>
