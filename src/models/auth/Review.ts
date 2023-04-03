@@ -9,4 +9,12 @@ export type Review = {
   updatedAt: number;
 };
 
+export type ShopReview = {
+  profile: {
+    nickname: string;
+    profileImageSrc: string;
+  };
+} & Review;
+
 export type ReviewList = Review[];
+export type ShopReviewList = ShopReview[];

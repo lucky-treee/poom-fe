@@ -1,3 +1,4 @@
+import { FetchShopResponse } from 'models/shop/response';
 import { rest } from 'msw';
 
 export const handlers = [
@@ -99,5 +100,57 @@ export const handlers = [
         },
       })
     );
+  }),
+
+  rest.get('/api/shop/v1/shops/shop/review', (req, res, ctx) => {
+    const reviewImgSrc =
+      'https://images.unsplash.com/photo-1481833761820-0509d3217039?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80';
+
+    const createReview = (id: number) => ({
+      id,
+      shop: {
+        name: '쓰레기 없는 행복 카페',
+        category: 'REFILL',
+      },
+      profile: {
+        nickname: `미니멀리스트${id}`,
+        profileImageSrc:
+          'https://cdn.pixabay.com/photo/2018/11/13/21/43/avatar-3814049_1280.png',
+      },
+      content:
+        '어린이대공원 피크닉때 디저트로 먹으려고 주문해봤는데요. 사실 그날 몸이 피곤한 상태라 졸렸는데 거북슈먹고 눈이 번쩍 뜨였어요 너무 맛있어서요.',
+      imgSrc: new Array(id).fill(reviewImgSrc),
+      updatedAt: 1680183180929, // 20230330 20:33:09
+    });
+
+    return res(
+      ctx.status(200),
+      ctx.json({
+        reviewList: [0, 1, 2, 3, 4, 5, 6, 7].map(createReview),
+      })
+    );
+  }),
+
+  rest.get('/api/shop/v1/shops/shop', async (req, res, ctx) => {
+    const shopId = req.url.searchParams.get('id');
+
+    const shop: FetchShopResponse = {
+      shopName: '리필리',
+      category: 'REFILL',
+      contact: '010-9876-5432',
+      flagshipProduct: '리필용 주방세제',
+      hashtag: 'GOOD',
+      holiday: 'SUN',
+      homepage: 'http://localhost:5173',
+      lat: 37.4842556832564,
+      lng: 126.949050365278,
+      operationEnd: '20:00',
+      operationStart: '10:00',
+      photo: '',
+      sns: '',
+      shopAddress: '행복시 행복로 10길 89 1층',
+    };
+
+    return res(ctx.status(200), ctx.json(shop));
   }),
 ];

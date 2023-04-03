@@ -3,6 +3,4 @@ export type Shop = {
   status: 'ENABLE';
   lat: number;
   lng: number;
-  category: string;
-  hashtag: string;
 };
