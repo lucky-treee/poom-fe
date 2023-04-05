@@ -7,7 +7,7 @@ import Typography from 'components/Typography';
 import { useFetchShopReviewList } from 'hooks/api/useFetchShopReviewList';
 import { useGetShopById } from 'hooks/api/useGetShopById';
 import { useGetUserInformation } from 'hooks/api/useGetUserInformation';
-import { ShopReview } from 'models/auth/Review';
+import { ShopReview } from 'models/review';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router';
 

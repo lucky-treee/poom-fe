@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { BookmarkList } from 'models/auth/Bookmark';
+import { BookmarkList } from 'models/bookmark';
 import { fetchBookmarkList } from 'service/auth';
 
 const useFetchBookmarkList = () => {

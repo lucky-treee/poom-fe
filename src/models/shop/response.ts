@@ -1,4 +1,4 @@
-import { ShopReview } from 'models/auth/Review';
+import { ShopReview } from 'models/review';
 import { Shop } from 'models/shop/Shop';
 
 export type ShopResponse = Shop[];
