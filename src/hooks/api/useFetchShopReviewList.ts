@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { ShopReviewList } from 'models/auth/Review';
+import { ShopReviewList } from 'models/review';
 import { fetchShopReviewList } from 'service/shop';
 
 export const useFetchShopReviewList = (id: number) => {
