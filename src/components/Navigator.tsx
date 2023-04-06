@@ -2,7 +2,7 @@ import React from 'react';
 import PathName from 'constants/PathName';
 import { ReactComponent as AddShopIcon } from 'assets/components/navigate/AddShopIcon.svg';
 import MapIcon from 'assets/components/navigate/MapIcon';
-import NavigatorCurve from 'assets/components/navigate/NavigatorCurve';
+import NavigatorCurve from 'assets/components/navigate/NavigatorCurve.svg';
 import ProfileIcon from 'assets/components/navigate/ProfileIcon';
 import Typography from 'components/Typography';
 import { useTranslation } from 'react-i18next';
@@ -40,30 +40,37 @@ const Navigator: React.FC<NavigatorProps> = (props) => {
       >
         <AddShopIcon />
       </button>
-      <div className="flex justify-center mt-7 w-full h-13.5 drop-shadow-md-reverse ">
-        <button
-          type="button"
-          className={`w-full h-13.5 bg-white ${
-            menu === 'map' ? 'text-primary' : 'text-placeholder'
-          }`}
-          onClick={handleMapButtonClick}
-        >
-          <MapIcon selected={menu === 'map'} />
-          <Typography type="caption">{t('map-navigator-menu-text')}</Typography>
-        </button>
-        <NavigatorCurve />
-        <button
-          type="button"
-          className={`w-full h-13.5 bg-white ${
-            menu === 'profile' ? 'text-primary' : 'text-placeholder'
-          }`}
-          onClick={handleProfileButtonClick}
-        >
-          <ProfileIcon selected={menu === 'profile'} />
-          <Typography type="caption">
-            {t('profile-navigator-menu-text')}
-          </Typography>
-        </button>
+      <div className="drop-shadow-md-reverse w-full ">
+        <div className="flex justify-center mt-7 w-full h-13.5 z-10">
+          <button
+            type="button"
+            className={`w-full h-13.5 bg-white z-10 ${
+              menu === 'map' ? 'text-primary' : 'text-placeholder'
+            }`}
+            onClick={handleMapButtonClick}
+          >
+            <MapIcon selected={menu === 'map'} />
+            <Typography type="caption">
+              {t('map-navigator-menu-text')}
+            </Typography>
+          </button>
+          <div className="w-[210px] bg-transparent" />
+          <button
+            type="button"
+            className={`w-full h-13.5 bg-white z-10 ${
+              menu === 'profile' ? 'text-primary' : 'text-placeholder'
+            }`}
+            onClick={handleProfileButtonClick}
+          >
+            <ProfileIcon selected={menu === 'profile'} />
+            <Typography type="caption">
+              {t('profile-navigator-menu-text')}
+            </Typography>
+          </button>
+        </div>
+        <div className="absolute bottom-0 w-full">
+          <img className="z-0 mx-auto" alt="하단바" src={NavigatorCurve} />
+        </div>
       </div>
     </nav>
   );
