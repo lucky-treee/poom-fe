@@ -1,7 +1,7 @@
 import React from 'react';
+import Typography from 'components/base/Typography';
 import LocalDate from 'components/LocalDate';
 import ReviewImageList from 'components/ReviewImageList';
-import Typography from 'components/Typography';
 
 type ReviewContentProps = {
   imgSrcList: string[];

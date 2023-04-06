@@ -1,9 +1,9 @@
 import React from 'react';
 import PathName from 'constants/PathName';
 import { ReactComponent as BackIcon } from 'assets/components/navigate/Back.svg';
+import Typography from 'components/base/Typography';
 import LoadingProgressIcon from 'components/LoadingProgressIcon';
 import BookmarkPreview from 'components/profile/BookmarkPreview';
-import Typography from 'components/Typography';
 import useFetchBookmarkList from 'hooks/api/useFetchBookmarkList';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';

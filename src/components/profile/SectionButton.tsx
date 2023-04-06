@@ -1,6 +1,6 @@
 import React from 'react';
 import { ReactComponent as NextIcon } from 'assets/auth/arrow-forward.svg';
-import Typography from 'components/Typography';
+import Typography from 'components/base/Typography';
 import { Link } from 'react-router-dom';
 
 interface SectionButtonProps {

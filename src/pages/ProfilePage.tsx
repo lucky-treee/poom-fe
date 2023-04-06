@@ -1,10 +1,10 @@
 import React from 'react';
 import PathName from 'constants/PathName';
+import Typography from 'components/base/Typography';
 import Navigator from 'components/Navigator';
 import LoginAlertProfile from 'components/profile/LoginAlertProfile';
 import Profile from 'components/profile/Profile';
 import SectionButton from 'components/profile/SectionButton';
-import Typography from 'components/Typography';
 import { useGetUserInformation } from 'hooks/api/useGetUserInformation';
 import useLogin from 'hooks/api/useLogin';
 import useAccessToken from 'hooks/useAccessToken';

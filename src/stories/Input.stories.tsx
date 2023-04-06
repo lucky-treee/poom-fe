@@ -1,6 +1,6 @@
 import React from 'react';
 import { StoryFn } from '@storybook/react';
-import Input from 'components/Input';
+import Input from 'components/base/Input';
 import 'index.css';
 
 export default {

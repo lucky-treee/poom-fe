@@ -1,6 +1,6 @@
 import React from 'react';
 import PathName from 'constants/PathName';
-import Typography from 'components/Typography';
+import Typography from 'components/base/Typography';
 import { useTranslation } from 'react-i18next';
 
 interface UnknownErrorPageProps {

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { ReactComponent as ActionMenuIcon } from 'assets/components/ActionMenu.svg';
 import ActionMenu from 'components/ActionMenu';
-import Button from 'components/Button';
-import Typography from 'components/Typography';
+import Button from 'components/base/Button';
+import Typography from 'components/base/Typography';
 import { ShopCategory } from 'models/shop/request';
 import { useTranslation } from 'react-i18next';
 

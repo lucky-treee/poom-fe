@@ -1,5 +1,5 @@
 import React from 'react';
-import Typography from 'components/Typography';
+import Typography from 'components/base/Typography';
 
 type LocalDateProps = {
   date: number;

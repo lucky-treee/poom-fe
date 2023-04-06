@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { ReactComponent as LocateIcon } from 'assets/map/SmallLocate.svg';
-import Button from 'components/Button';
-import Input from 'components/Input';
+import Button from 'components/base/Button';
+import Input from 'components/base/Input';
+import Select from 'components/base/Select';
+import Typography from 'components/base/Typography';
 import MapInput from 'components/MapInput';
-import Select from 'components/Select';
-import Typography from 'components/Typography';
 import { useRegisterShop } from 'hooks/api/useRegisterShop';
 import { ShopRegisterForm as ShopRegisterFormValue } from 'models/shop/ShopRegisterForm';
 import { FormProvider, useForm } from 'react-hook-form';

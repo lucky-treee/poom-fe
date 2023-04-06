@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import ProfileImageList from 'constants/ProfileImageList';
 import { ReactComponent as CheckIcon } from 'assets/components/Check.svg';
-import Button from 'components/Button';
-import Modal from 'components/Modal';
-import Typography from 'components/Typography';
+import Button from 'components/base/Button';
+import Modal from 'components/base/Modal';
+import Typography from 'components/base/Typography';
 import { useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 

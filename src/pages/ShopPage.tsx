@@ -1,9 +1,9 @@
 import React from 'react';
 import PathName from 'constants/PathName';
+import Typography from 'components/base/Typography';
 import LoadingProgressIcon from 'components/LoadingProgressIcon';
 import ReviewContent from 'components/ReviewContent';
 import Shop from 'components/shop/Shop';
-import Typography from 'components/Typography';
 import { useFetchShopReviewList } from 'hooks/api/useFetchShopReviewList';
 import { useGetShopById } from 'hooks/api/useGetShopById';
 import { useGetUserInformation } from 'hooks/api/useGetUserInformation';

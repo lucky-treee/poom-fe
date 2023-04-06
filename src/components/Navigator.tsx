@@ -4,7 +4,7 @@ import { ReactComponent as AddShopIcon } from 'assets/components/navigate/AddSho
 import MapIcon from 'assets/components/navigate/MapIcon';
 import NavigatorCurve from 'assets/components/navigate/NavigatorCurve';
 import ProfileIcon from 'assets/components/navigate/ProfileIcon';
-import Typography from 'components/Typography';
+import Typography from 'components/base/Typography';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
