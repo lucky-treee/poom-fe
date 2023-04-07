@@ -1,6 +1,6 @@
 import React from 'react';
 import PathName from 'constants/PathName';
-import ToastProvider from 'components/ToastProvider';
+import ToastProvider from 'components/base/ToastProvider';
 import AuthPage from 'pages/AuthPage';
 import BookmarkManagePage from 'pages/BookmarkManagePage';
 import NotFoundErrorPage from 'pages/error/NotFoundErrorPage';

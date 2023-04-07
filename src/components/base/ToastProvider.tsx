@@ -1,5 +1,5 @@
 import React, { ReactNode, useReducer } from 'react';
-import Toast from 'components/Toast';
+import Toast from 'components/base/Toast';
 import {
   ToastContext,
   ToastDispatchContext,

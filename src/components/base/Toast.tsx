@@ -4,7 +4,7 @@ import { ReactComponent as ErrorIcon } from 'assets/components/toast/error.svg';
 import { ReactComponent as InfoIcon } from 'assets/components/toast/info.svg';
 import { ReactComponent as SuccessIcon } from 'assets/components/toast/success.svg';
 import { ReactComponent as WarnIcon } from 'assets/components/toast/warn.svg';
-import Typography from 'components/Typography';
+import Typography from 'components/base/Typography';
 import useToast from 'hooks/useToast';
 import { ToastData } from 'models/ToastContext';
 
