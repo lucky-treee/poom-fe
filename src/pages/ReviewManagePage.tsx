@@ -1,10 +1,10 @@
 import React from 'react';
 import PathName from 'constants/PathName';
 import { ReactComponent as BackIcon } from 'assets/components/navigate/Back.svg';
+import Typography from 'components/base/Typography';
 import LoadingProgressIcon from 'components/LoadingProgressIcon';
 import ReviewContent from 'components/ReviewContent';
 import ReviewTitleHeader from 'components/ReviewTitleHeader';
-import Typography from 'components/Typography';
 import useFetchUserReviewList from 'hooks/api/useFetchUserReviewList';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';

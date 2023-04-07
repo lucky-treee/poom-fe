@@ -1,5 +1,5 @@
 import React from 'react';
-import Input from 'components/Input';
+import Input from 'components/base/Input';
 import { useTranslation } from 'react-i18next';
 
 const NicknameInput: React.FC = () => {

@@ -2,7 +2,7 @@ import React from 'react';
 import PathName from 'constants/PathName';
 import { ReactComponent as BackIcon } from 'assets/components/navigate/Back.svg';
 import SignUpForm from 'components/auth/SignUpForm';
-import Typography from 'components/Typography';
+import Typography from 'components/base/Typography';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 

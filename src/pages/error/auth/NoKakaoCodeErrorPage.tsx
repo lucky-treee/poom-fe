@@ -1,5 +1,5 @@
 import React from 'react';
-import Typography from 'components/Typography';
+import Typography from 'components/base/Typography';
 import { useTranslation } from 'react-i18next';
 
 interface NoKakaoCodeErrorPageProps {

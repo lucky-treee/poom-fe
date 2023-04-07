@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { ReactComponent as BackIcon } from 'assets/components/navigate/Back.svg';
-import Button from 'components/Button';
+import Button from 'components/base/Button';
+import Typography from 'components/base/Typography';
 import LocateButton from 'components/map/LocateButton';
 import ShopMarker from 'components/map/ShopMarker';
 import UserMarker from 'components/map/UserMarker';
-import Typography from 'components/Typography';
 import { LocationType } from 'models/Location';
 import { useGeolocated } from 'react-geolocated';
 import { useFormContext } from 'react-hook-form';

@@ -1,8 +1,8 @@
 import React from 'react';
 import { ReactComponent as FavoriteIcon } from 'assets/components/Favorite.svg';
 import { ReactComponent as NoImageIcon } from 'assets/components/NoImage.svg';
+import Typography from 'components/base/Typography';
 import HashtagChip from 'components/HashtagChip';
-import Typography from 'components/Typography';
 import { HashtagOptions } from 'models/auth/response';
 import { useTranslation } from 'react-i18next';
 

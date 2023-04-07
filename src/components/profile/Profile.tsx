@@ -1,6 +1,6 @@
 import React from 'react';
 import { ReactComponent as EditIcon } from 'assets/auth/mingcute_pencil-fill.svg';
-import Typography from 'components/Typography';
+import Typography from 'components/base/Typography';
 import { useTranslation } from 'react-i18next';
 import type { Profile as ProfileType } from 'models/auth/Profile';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ReactComponent as BackIcon } from 'assets/components/navigate/Back.svg';
+import Typography from 'components/base/Typography';
 import ShopRegisterForm from 'components/ShopRegisterForm';
-import Typography from 'components/Typography';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 

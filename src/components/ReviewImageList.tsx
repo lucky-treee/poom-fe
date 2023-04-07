@@ -1,6 +1,6 @@
 import React from 'react';
 import { ReactComponent as CameraIcon } from 'assets/components/Camera.svg';
-import Typography from 'components/Typography';
+import Typography from 'components/base/Typography';
 import { useTranslation } from 'react-i18next';
 
 type ReviewImageListProps = {

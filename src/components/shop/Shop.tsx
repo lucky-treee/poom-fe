@@ -1,8 +1,8 @@
 import React from 'react';
 import { ReactComponent as HeartIcon } from 'assets/components/Heart.svg';
 import { ReactComponent as BackArrowIcon } from 'assets/components/navigate/Back.svg';
+import Typography from 'components/base/Typography';
 import HashtagChip from 'components/HashtagChip';
-import Typography from 'components/Typography';
 import { FetchShopResponse } from 'models/shop/response';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';

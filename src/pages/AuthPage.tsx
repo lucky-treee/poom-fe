@@ -1,8 +1,8 @@
 import React from 'react';
 import PathName from 'constants/PathName';
 import { AxiosError } from 'axios';
+import Typography from 'components/base/Typography';
 import LoadingProgressIcon from 'components/LoadingProgressIcon';
-import Typography from 'components/Typography';
 import useKakaoLogin from 'hooks/api/useKakaoLogin';
 import useAccessToken from 'hooks/useAccessToken';
 import useRedirectPath from 'hooks/useRedirectPath';

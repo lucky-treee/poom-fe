@@ -41,16 +41,17 @@ type SelectOptionProps = {
   isSelected: boolean;
   value: string;
   onMouseDown: (value: string) => void;
+  className?: string;
 };
 
 const SelectOption: React.FC<SelectOptionProps> = (props) => {
-  const { isSelected, value, onMouseDown } = props;
+  const { isSelected, value, onMouseDown, className } = props;
 
   const handleMouseDown = () => onMouseDown(value);
 
   return (
     <div
-      className={`${isSelected ? 'bg-gray-200' : ''} px-2 py-1`}
+      className={`${className} ${isSelected ? 'bg-selected' : ''} px-4 py-3`}
       onMouseDown={handleMouseDown}
     >
       {value}
@@ -111,7 +112,7 @@ const Select: React.FC<SelectProps> = (props) => {
         onFocus={handleFocused}
         value={selectedValue}
         {...register(name, registerOptions)}
-        onBlurCapture={handleBlur}
+        onBlur={handleBlur}
       >
         <HiddenOptions options={options} values={values} />
       </select>
@@ -121,7 +122,7 @@ const Select: React.FC<SelectProps> = (props) => {
       <div
         className={`${
           isFocused ? '' : 'hidden'
-        } absolute top-[50px] w-full border bg-white border-border-gray rounded-md overflow-hidden`}
+        } absolute top-[54px] w-full border bg-white border-border-gray rounded-md overflow-hidden shadow-md`}
       >
         {options.map((option, index) => {
           return (
@@ -129,6 +130,11 @@ const Select: React.FC<SelectProps> = (props) => {
               key={option}
               isSelected={selectedOption === option}
               value={option}
+              className={
+                index === options.length - 1
+                  ? ''
+                  : 'border-b border-border-gray'
+              }
               onMouseDown={() => {
                 handleOptionClick(values ? values[index] : option);
               }}

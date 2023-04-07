@@ -1,6 +1,6 @@
 import React from 'react';
+import Typography from 'components/base/Typography';
 import HashtagChip from 'components/HashtagChip';
-import Typography from 'components/Typography';
 import { useTranslation } from 'react-i18next';
 
 type ModalProps = {

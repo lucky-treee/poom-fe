@@ -1,6 +1,6 @@
 import React from 'react';
 import { StoryFn } from '@storybook/react';
-import Typography from 'components/Typography';
+import Typography from 'components/base/Typography';
 
 export default {
   title: 'Typography',

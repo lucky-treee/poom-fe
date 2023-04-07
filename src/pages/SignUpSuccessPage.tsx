@@ -1,7 +1,7 @@
 import React from 'react';
 import PathName from 'constants/PathName';
-import Button from 'components/Button';
-import Typography from 'components/Typography';
+import Button from 'components/base/Button';
+import Typography from 'components/base/Typography';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
