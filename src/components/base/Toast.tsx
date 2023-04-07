@@ -30,7 +30,7 @@ const Toast: React.FC<ToastProps> = (props) => {
   switch (type) {
     case 'success':
       return (
-        <div className="flex flex-row justify-between items-center min-w-[160px] bg-primary px-2 py-1 rounded-md gap-8">
+        <div className="flex flex-row justify-between items-center min-w-[160px] bg-primary px-2 py-1 rounded-md gap-8 shadow-md">
           <div className="flex flex-row gap-1 items-center">
             <SuccessIcon />
             <Typography type="body" className="text-white">
@@ -44,7 +44,7 @@ const Toast: React.FC<ToastProps> = (props) => {
       );
     case 'error':
       return (
-        <div className="flex flex-row justify-between items-center min-w-[160px] bg-red-500 px-2 py-1 rounded-md gap-8">
+        <div className="flex flex-row justify-between items-center min-w-[160px] bg-red-500 px-2 py-1 rounded-md gap-8 shadow-md">
           <div className="flex flex-row gap-1 items-center">
             <ErrorIcon />
             <Typography type="body" className="text-white">
@@ -58,7 +58,7 @@ const Toast: React.FC<ToastProps> = (props) => {
       );
     case 'warn':
       return (
-        <div className="flex flex-row justify-between items-center min-w-[160px] bg-amber-500 px-2 py-1 rounded-md gap-8">
+        <div className="flex flex-row justify-between items-center min-w-[160px] bg-amber-500 px-2 py-1 rounded-md gap-8 shadow-md">
           <div className="flex flex-row gap-1 items-center">
             <WarnIcon />
             <Typography type="body" className="text-white">
@@ -73,7 +73,7 @@ const Toast: React.FC<ToastProps> = (props) => {
     case 'info':
     default:
       return (
-        <div className="flex flex-row justify-between items-center min-w-[160px] bg-sky-500 px-2 py-1 rounded-md gap-8">
+        <div className="flex flex-row justify-between items-center min-w-[160px] bg-sky-500 px-2 py-1 rounded-md gap-8 shadow-md">
           <div className="flex flex-row gap-1 items-center">
             <InfoIcon />
             <Typography type="body" className="text-white">
