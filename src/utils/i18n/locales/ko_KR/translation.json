@@ -17,6 +17,7 @@
   "my-page-header": "마이페이지",
   "need-login-message": "로그인이 필요한 서비스입니다.",
   "login-link-text": "로그인",
+  "login-fail-error-toast-message": "로그인에 실패했습니다.",
   "review": "리뷰",
   "review-count": "리뷰 수",
   "review-count-message": "리뷰 {{reviewCount}}개",
