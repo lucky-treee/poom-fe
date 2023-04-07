@@ -8,8 +8,6 @@ export type ToastData = {
   message: string;
 };
 
-export const ToastContext = createContext<ToastData[]>([]);
-
 export type ToastContextType = {
   addToast: (message: string, type: ToastType) => string;
   removeToast: (id: string) => void;
