@@ -1,3 +1,4 @@
+import { RegisterReviewRequest } from 'models/review/request';
 import { FetchShopResponse } from 'models/shop/response';
 import { rest } from 'msw';
 
@@ -128,6 +129,15 @@ export const handlers = [
       ctx.json({
         reviewList: [0, 1, 2, 3, 4, 5, 6, 7].map(createReview),
       })
+    );
+  }),
+
+  rest.post('/api/shop/v1/shops/shop/review', async (req, res, ctx) => {
+    const { content, images } = req.body as RegisterReviewRequest;
+
+    return res(
+      ctx.status(200),
+      ctx.json({ message: 'request performed successfully' })
     );
   }),
 
