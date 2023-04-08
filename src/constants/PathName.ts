@@ -2,6 +2,7 @@ const PathName = {
   MAP_PAGE: '/',
   PROFILE_PAGE: '/profile',
   BOOKMARK_MANAGE_PAGE: '/profile/bookmark',
+  REVIEW_REGISTER_PAGE: '/shop/:id/review',
   REVIEW_MANAGE_PAGE: '/profile/review',
   SHOP_PAGE: '/shop/:id',
   SHOP_REGISTER_PAGE: '/shop/register',
