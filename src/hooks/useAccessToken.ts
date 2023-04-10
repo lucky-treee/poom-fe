@@ -1,4 +1,4 @@
-import { setSessionItem } from 'utils/sessionStorage';
+import { setSessionItem } from 'utils/SessionStorage';
 
 const useAccessToken = () => {
   const setAccessToken = (token: string) =>

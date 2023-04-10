@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { refreshAccessToken } from 'service/auth';
-import { setSessionItem } from 'utils/sessionStorage';
+import { setSessionItem } from 'utils/SessionStorage';
 
 const useRefreshAccessToken = () => {
   return useQuery({

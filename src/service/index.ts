@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import config from 'config';
 import { RefreshAccessTokenResponse } from 'models/auth/response';
-import { getSessionItem, setSessionItem } from 'utils/sessionStorage';
+import { getSessionItem, setSessionItem } from 'utils/SessionStorage';
 
 type ServiceConfig = {
   withCredentials?: boolean;
