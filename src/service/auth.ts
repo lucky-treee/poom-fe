@@ -1,7 +1,6 @@
 import { KakaoLoginRequest, SignUpRequest } from 'models/auth/request';
 import {
   KakaoLoginResponse,
-  LoginResponse,
   FetchProfileResponse,
   SignUpResponse,
   FetchBookmarkListResponse,
