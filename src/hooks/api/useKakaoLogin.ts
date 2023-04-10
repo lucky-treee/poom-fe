@@ -1,18 +1,14 @@
 import { redirectUri } from 'constants/KakaoPath';
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
-import { KakaoLoginResponse } from 'models/auth/response';
 import { kakaoLogin } from 'service/auth';
 
-type UseLoginOptions = Pick<
-  UseQueryOptions<KakaoLoginResponse, Error>,
-  'onSuccess'
->;
+type UseLoginOptions = Pick<UseQueryOptions<string, Error>, 'onSuccess'>;
 
 const useKakaoLogin = (userCode: string, options?: UseLoginOptions) =>
   useQuery(
     ['kakaoLogin', userCode],
     async () => {
-      const accessToken = await kakaoLogin({
+      const { accessToken } = await kakaoLogin({
         code: userCode,
         redirect_uri: redirectUri,
       });

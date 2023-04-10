@@ -13,7 +13,7 @@ export const fetchShopList = (
   maxLng: number,
   minLng: number
 ) => {
-  return ShopService.get<ShopResponse>('/v1/shops', {
+  return ShopService.get<ShopResponse>('/v1/shops', undefined, {
     params: {
       maxLat,
       minLat,
@@ -24,26 +24,28 @@ export const fetchShopList = (
 };
 
 export const registerShop = (shopRegisterRequest: ShopRegisterRequest) => {
-  return ShopService.post('/v1/shops/shop', shopRegisterRequest);
+  return ShopService.post<ShopRegisterRequest, unknown>(
+    '/v1/shops/shop',
+    shopRegisterRequest
+  );
 };
 
 export const getShopById = (id: number) => {
-  return ShopService.get<FetchShopResponse>('/v1/shops/shop', {
+  return ShopService.get<FetchShopResponse>('/v1/shops/shop', undefined, {
     params: { id },
   });
 };
 
-export const fetchShopReviewList = async (id: number) => {
-  const { data } = await ShopService.get<FetchShopReviewListResponse>(
+export const fetchShopReviewList = (id: number) => {
+  return ShopService.get<FetchShopReviewListResponse>(
     '/v1/shops/shop/review',
+    undefined,
     {
       params: {
         id,
       },
     }
   );
-
-  return data;
 };
 
 export const registerReview = async (
