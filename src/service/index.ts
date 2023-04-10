@@ -68,7 +68,7 @@ class Service {
   public get = async <Response>(
     url: string,
     serviceConfig: ServiceConfig = {},
-    queryConfig?: AxiosRequestConfig
+    queryConfig?: Omit<AxiosRequestConfig, 'withCredentials'>
   ): Promise<Response> => {
     const { withCredentials } = serviceConfig;
 
@@ -83,7 +83,7 @@ class Service {
     url: string,
     body?: Request,
     serviceConfig: ServiceConfig = {},
-    queryConfig?: AxiosRequestConfig
+    queryConfig?: Omit<AxiosRequestConfig, 'withCredentials'>
   ): Promise<Response> => {
     const { withCredentials } = serviceConfig;
 
@@ -101,7 +101,7 @@ class Service {
   public delete = async <Response>(
     url: string,
     serviceConfig: ServiceConfig = {},
-    queryConfig?: AxiosRequestConfig
+    queryConfig?: Omit<AxiosRequestConfig, 'withCredentials'>
   ): Promise<Response> => {
     const { withCredentials } = serviceConfig;
 
@@ -116,7 +116,7 @@ class Service {
     url: string,
     body?: Request,
     serviceConfig: ServiceConfig = {},
-    queryConfig?: AxiosRequestConfig
+    queryConfig?: Omit<AxiosRequestConfig, 'withCredentials'>
   ): Promise<Response> => {
     const { withCredentials } = serviceConfig;
 
