@@ -20,7 +20,9 @@ export const kakaoLogin = async (kakaoLoginRequest: KakaoLoginRequest) => {
 };
 
 export const fetchProfile = async () => {
-  const data = await AuthService.get<FetchProfileResponse>('/v1/members');
+  const data = await AuthService.get<FetchProfileResponse>('/v1/members', {
+    withCredentials: true,
+  });
 
   return data;
 };
