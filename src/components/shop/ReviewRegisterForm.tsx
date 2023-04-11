@@ -75,7 +75,7 @@ const ReviewRegisterForm: React.FC = () => {
   };
 
   const onSubmit = async (formValue: ReviewRegisterFormValue) => {
-    const { content, images } = formValue;
+    const { content } = formValue;
 
     registerReview({
       shopId: parseInt(shopId ?? '-1', 10),
