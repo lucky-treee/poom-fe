@@ -1,4 +1,4 @@
-import { ChangeEvent, useRef, useState, MouseEvent } from 'react';
+import { ChangeEvent, MouseEvent, useRef } from 'react';
 import { ReactComponent as CameraIcon } from 'assets/components/Camera.svg';
 import { ReactComponent as CancelIcon } from 'assets/components/Cancel.svg';
 import Button from 'components/base/Button';
@@ -12,14 +12,14 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router';
 
-const MAX_IMAGES = 5;
+const MAX_IMAGE_COUNT = 5;
 
 const ReviewRegisterForm: React.FC = () => {
   const { t } = useTranslation();
-  const [images, setImages] = useState<File[]>([]);
-  const inputRef = useRef<HTMLInputElement>(null);
 
-  const { id: shopId } = useParams<{ id?: string }>() ?? '';
+  const imagesRef = useRef<File[]>([]);
+
+  const { id: shopId } = useParams<{ id?: string }>() ?? '-1';
 
   const { addToast } = useToast();
 
@@ -27,53 +27,58 @@ const ReviewRegisterForm: React.FC = () => {
     mode: 'onChange',
     defaultValues: {
       content: '',
+      images: [],
     },
   });
 
-  const { handleSubmit } = methods;
+  const { handleSubmit, register, setValue, watch } = methods;
+
+  const images = watch('images');
 
   const { mutate: registerReview, isLoading } = useRegisterReview();
 
   const handleAddImageClick = (event: MouseEvent<HTMLButtonElement>) => {
-    if (images.length < MAX_IMAGES) {
-      return;
-    }
+    if (images.length >= MAX_IMAGE_COUNT) {
+      event.preventDefault();
 
-    event.preventDefault();
-    addToast({ message: t('add-review-image-error-msg'), type: 'error' });
+      addToast({ message: t('add-review-image-error-msg'), type: 'error' });
+    }
   };
 
   const handleImagesChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { files } = event.target;
 
-    if (!files) {
-      return;
+    if (files) {
+      const addableImageCount = MAX_IMAGE_COUNT - images.length;
+      const isLargerAddableImageCount = files.length > addableImageCount;
+
+      if (isLargerAddableImageCount) {
+        addToast({ message: t('add-review-image-error-msg'), type: 'error' });
+      }
+
+      const newAddedImages = Array.from(files).slice(0, addableImageCount);
+
+      imagesRef.current = imagesRef.current.concat(newAddedImages);
+
+      setValue('images', imagesRef.current);
     }
-
-    const addableImageCount = MAX_IMAGES - images.length;
-    const isLargerAddableImageCount = files.length > addableImageCount;
-
-    if (isLargerAddableImageCount) {
-      addToast({ message: t('add-review-image-error-msg'), type: 'error' });
-    }
-
-    const newAddedImages = Array.from(files).slice(0, addableImageCount);
-
-    setImages([...images, ...newAddedImages]);
   };
 
-  const handleImageDelete = (image: File) => {
-    const updatedImages = images.filter((_image) => _image.name !== image.name);
+  const handleImageDelete = (imageToDelete: File) => {
+    const updatedImages = images.filter(
+      (image) => image.name !== imageToDelete.name
+    );
 
-    setImages(updatedImages);
+    imagesRef.current = updatedImages;
+
+    setValue('images', imagesRef.current);
   };
 
   const onSubmit = async (formValue: ReviewRegisterFormValue) => {
-    const { content } = formValue;
+    const { content, images } = formValue;
 
     registerReview({
-      shopId: parseInt(shopId!, 10),
-      memberId: 1,
+      shopId: parseInt(shopId ?? '-1', 10),
       content,
       images,
     });
@@ -108,16 +113,16 @@ const ReviewRegisterForm: React.FC = () => {
                 <Typography type="caption" className="text-white">
                   {t('add-review-image')}
                 </Typography>
-                <input
-                  id="addImage"
-                  ref={inputRef}
-                  type="file"
-                  accept="image/*"
-                  multiple
-                  className="hidden"
-                  onChange={handleImagesChange}
-                />
               </label>
+              <input
+                id="addImage"
+                type="file"
+                accept="image/*"
+                multiple
+                className="hidden"
+                {...register('images')}
+                onChange={handleImagesChange}
+              />
             </button>
 
             {images.map((image) => (
