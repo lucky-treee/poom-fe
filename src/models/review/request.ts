@@ -1,6 +1,5 @@
-import { ReviewRegisterForm } from 'models/review/ReviewRegisterForm';
-
 export type RegisterReviewRequest = {
   images: File[];
+  content: string;
   shopId: number;
-} & ReviewRegisterForm;
+};
