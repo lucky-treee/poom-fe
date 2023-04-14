@@ -11,6 +11,8 @@ const ShopRegisterPage: React.FC = () => {
 
   const { t } = useTranslation();
 
+  const handleBackButtonClick = () => navigate(PathName.MAP_PAGE);
+
   return (
     <div className="flex flex-col px-6 py-6 h-screen gap-6">
       <div className="flex flex-col gap-3">
@@ -18,7 +20,7 @@ const ShopRegisterPage: React.FC = () => {
           <button
             type="button"
             className="flex flex-row gap-1 items-center w-fit"
-            onClick={() => navigate(PathName.MAP_PAGE)}
+            onClick={handleBackButtonClick}
           >
             <BackIcon />
           </button>

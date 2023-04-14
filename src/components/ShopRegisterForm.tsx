@@ -24,9 +24,7 @@ const ShopRegisterForm: React.FC = () => {
   const handleMapClose = () => setIsMapOpen(false);
 
   const { mutate: registerShop, isLoading } = useRegisterShop({
-    onSuccess: () => {
-      navigate(PathName.MAP_PAGE);
-    },
+    onSuccess: () => navigate(PathName.MAP_PAGE),
   });
 
   const methods = useForm<ShopRegisterFormValue>({
@@ -99,7 +97,12 @@ const ShopRegisterForm: React.FC = () => {
             />
           </div>
         </div>
-        <Button isLoading={isLoading} type="submit" variant="main">
+        <Button
+          className="min-h-[40px]"
+          isLoading={isLoading}
+          type="submit"
+          variant="main"
+        >
           {t('register-shop-button-text')}
         </Button>
         <MapInput open={isMapOpen} onClose={handleMapClose} />
