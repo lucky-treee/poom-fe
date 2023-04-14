@@ -8,6 +8,8 @@ type InputProps<T> = {
   placeholder?: T;
   defaultValue?: T;
   type?: React.HTMLInputTypeAttribute;
+  id?: string;
+  multiple?: boolean;
 } & RegisterOptions;
 
 const style = {
@@ -16,8 +18,16 @@ const style = {
 };
 
 function Input<T>(props: InputProps<T>) {
-  const { name, placeholder, type, className, accept, ...registerOptions } =
-    props;
+  const {
+    name,
+    placeholder,
+    type,
+    className,
+    accept,
+    id,
+    multiple,
+    ...registerOptions
+  } = props;
 
   const { register, formState, getFieldState } = useFormContext();
 
@@ -29,8 +39,10 @@ function Input<T>(props: InputProps<T>) {
         className={`border outline-0 w-full px-4 py-3 border-border-gray rounded-md ${
           error ? style.error : style.normal
         } ${className}`}
+        id={id}
         accept={accept}
         type={type}
+        multiple={multiple}
         placeholder={typeof placeholder === 'string' ? placeholder : undefined}
         {...register(name, registerOptions)}
       />
