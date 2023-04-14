@@ -1,4 +1,5 @@
 import React from 'react';
+import PathName from 'constants/PathName';
 import { ReactComponent as BackIcon } from 'assets/components/navigate/Back.svg';
 import Typography from 'components/base/Typography';
 import ShopRegisterForm from 'components/ShopRegisterForm';
@@ -12,16 +13,18 @@ const ShopRegisterPage: React.FC = () => {
 
   return (
     <div className="flex flex-col px-6 py-6 h-screen gap-6">
-      <button
-        type="button"
-        className="flex flex-row gap-1 items-center w-fit"
-        onClick={() => navigate(-1)}
-      >
-        <BackIcon />
-      </button>
-      <div className="flex flex-col gap-4">
-        <Typography type="title">{t('register-shop-page-title')}</Typography>
-        <Typography type="body">
+      <div className="flex flex-col gap-3">
+        <div className="flex flex-row gap-4">
+          <button
+            type="button"
+            className="flex flex-row gap-1 items-center w-fit"
+            onClick={() => navigate(PathName.MAP_PAGE)}
+          >
+            <BackIcon />
+          </button>
+          <Typography type="title">{t('register-shop-page-title')}</Typography>
+        </div>
+        <Typography type="body" className="text-gray-500">
           {t('register-shop-page-description')}
         </Typography>
       </div>
