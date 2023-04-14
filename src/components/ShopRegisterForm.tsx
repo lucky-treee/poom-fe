@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PathName from 'constants/PathName';
 import { ReactComponent as LocateIcon } from 'assets/map/SmallLocate.svg';
 import Button from 'components/base/Button';
 import Input from 'components/base/Input';
@@ -9,17 +10,24 @@ import { useRegisterShop } from 'hooks/api/useRegisterShop';
 import { ShopRegisterForm as ShopRegisterFormValue } from 'models/shop/ShopRegisterForm';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router';
 
 const ShopRegisterForm: React.FC = () => {
   const { t } = useTranslation();
 
   const [isMapOpen, setIsMapOpen] = useState(false);
 
+  const navigate = useNavigate();
+
   const handleMapOpen = () => setIsMapOpen(true);
 
   const handleMapClose = () => setIsMapOpen(false);
 
-  const { mutate: registerShop, isLoading } = useRegisterShop();
+  const { mutate: registerShop, isLoading } = useRegisterShop({
+    onSuccess: () => {
+      navigate(PathName.MAP_PAGE);
+    },
+  });
 
   const methods = useForm<ShopRegisterFormValue>({
     mode: 'onChange',
