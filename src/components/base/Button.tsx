@@ -34,7 +34,11 @@ const Button: React.FC<ButtonProps> = (props) => {
         className={`${defaultStyle} bg-primary hover:bg-primary-hover text-white rounded-md ${Size[size]} ${className}`}
         {...rest}
       >
-        {isLoading ? <LoadingProgressIcon className="fill-white" /> : children}
+        {isLoading ? (
+          <LoadingProgressIcon size="small" className="fill-white" />
+        ) : (
+          children
+        )}
       </button>
     );
   }
@@ -45,7 +49,7 @@ const Button: React.FC<ButtonProps> = (props) => {
         {...rest}
       >
         {isLoading ? (
-          <LoadingProgressIcon className="fill-primary" />
+          <LoadingProgressIcon size="small" className="fill-primary" />
         ) : (
           children
         )}
@@ -55,7 +59,11 @@ const Button: React.FC<ButtonProps> = (props) => {
 
   return (
     <button className={`${defaultStyle} ${Size[size]} ${className}`} {...rest}>
-      {isLoading ? <LoadingProgressIcon className="fill-primary" /> : children}
+      {isLoading ? (
+        <LoadingProgressIcon size="small" className="fill-primary" />
+      ) : (
+        children
+      )}
     </button>
   );
 };
