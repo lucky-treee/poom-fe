@@ -1,4 +1,4 @@
-import { ChangeEvent, MouseEvent, useRef } from 'react';
+import { ChangeEvent, MouseEvent, useRef, useState } from 'react';
 import { ReactComponent as CameraIcon } from 'assets/components/Camera.svg';
 import { ReactComponent as CancelIcon } from 'assets/components/Cancel.svg';
 import Button from 'components/base/Button';
@@ -11,15 +11,31 @@ import { ReviewRegisterForm as ReviewRegisterFormValue } from 'models/review/Rev
 import { FormProvider, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router';
+import Input from 'components/base/Input';
 
 const MAX_IMAGE_COUNT = 5;
 
+const Thumbnial: React.FC<{ image: File }> = ({ image }) => {
+  return (
+    <div className="relative w-[168px] h-[168px]">
+      <img
+        className="w-full h-full rounded-lg"
+        src={URL.createObjectURL(image)}
+        alt=""
+      />
+      <button
+        className="absolute right-[-8px] top-[-4px] w-7 h-7"
+        type="button"
+      >
+        <CancelIcon />
+      </button>
+    </div>
+  );
+};
+
 const ReviewRegisterForm: React.FC = () => {
   const { t } = useTranslation();
-
-  const imagesRef = useRef<File[]>([]);
-
-  const { id: shopId } = useParams<{ id?: string }>() ?? '-1';
+  const { id: shopId } = useParams<{ id: string }>() ?? '';
 
   const { addToast } = useToast();
 
@@ -31,15 +47,21 @@ const ReviewRegisterForm: React.FC = () => {
     },
   });
 
-  const { handleSubmit, register, setValue, watch } = methods;
+  const { handleSubmit, getValues, setValue } = methods;
 
-  const images = watch('images');
+  /**
+   * 해당 변수는 `images`를 `react-hook-form`으로 관리할 경우,
+   * change event의 target.files의 데이터와 항상 동기화되기 때문에
+   * 이미지 첨부에 대한 컴포넌트에 클릭 이벤트가 발생하는 순간 이전에 첨부한 이미지들을 기억하기 위해 선언되었습니다.
+   * `state`가 아닌 `ref`로 관리하게 된 이유는 기억용 데이터의 업데이트가 UI를 다시 렌더링 할 이유가 없다고 생각했기 때문입니다.
+   */
+  const prevImages = useRef<File[]>([]);
 
-  const { mutate: registerReview, isLoading } = useRegisterReview();
+  const handleAddImageClick = (e: MouseEvent<HTMLButtonElement>) => {
+    prevImages.current = [...getValues('images')];
 
-  const handleAddImageClick = (event: MouseEvent<HTMLButtonElement>) => {
-    if (images.length >= MAX_IMAGE_COUNT) {
-      event.preventDefault();
+    if (getValues('images').length >= MAX_IMAGE_COUNT) {
+      e.preventDefault();
 
       addToast({ message: t('add-review-image-error-msg'), type: 'error' });
     }
@@ -49,39 +71,23 @@ const ReviewRegisterForm: React.FC = () => {
     const { files } = event.target;
 
     if (files) {
-      const addableImageCount = MAX_IMAGE_COUNT - images.length;
-      const isLargerAddableImageCount = files.length > addableImageCount;
+      const addableImageCount = MAX_IMAGE_COUNT - prevImages.current.length;
 
-      if (isLargerAddableImageCount) {
+      if (files.length > addableImageCount) {
         addToast({ message: t('add-review-image-error-msg'), type: 'error' });
       }
 
-      const newAddedImages = Array.from(files).slice(0, addableImageCount);
-
-      imagesRef.current = imagesRef.current.concat(newAddedImages);
-
-      setValue('images', imagesRef.current);
+      setValue('images', [
+        ...prevImages.current,
+        ...Array.from(getValues('images')).slice(0, addableImageCount),
+      ]);
     }
   };
 
-  const handleImageDelete = (imageToDelete: File) => {
-    const updatedImages = images.filter(
-      (image) => image.name !== imageToDelete.name
-    );
-
-    imagesRef.current = updatedImages;
-
-    setValue('images', imagesRef.current);
-  };
+  const { mutate: registerReview } = useRegisterReview(parseInt(shopId!, 10));
 
   const onSubmit = async (formValue: ReviewRegisterFormValue) => {
-    const { content } = formValue;
-
-    registerReview({
-      shopId: parseInt(shopId ?? '-1', 10),
-      content,
-      images,
-    });
+    registerReview(formValue);
   };
 
   return (
@@ -102,8 +108,8 @@ const ReviewRegisterForm: React.FC = () => {
           <section className="w-full flex flex-wrap justify-between gap-y-2">
             <button
               type="button"
-              onClick={handleAddImageClick}
               className="flex justify-center items-center w-[168px] h-[168px] rounded-lg bg-black/25"
+              onClick={handleAddImageClick}
             >
               <label
                 htmlFor="addImage"
@@ -114,44 +120,23 @@ const ReviewRegisterForm: React.FC = () => {
                   {t('add-review-image')}
                 </Typography>
               </label>
-              <input
-                id="addImage"
-                type="file"
-                accept="image/*"
-                multiple
-                className="hidden"
-                {...register('images')}
-                onChange={handleImagesChange}
-              />
-            </button>
-
-            {images.map((image) => (
-              <div
-                key={URL.createObjectURL(image)}
-                className="relative w-[168px] h-[168px]"
-              >
-                <img
-                  src={URL.createObjectURL(image)}
-                  alt=""
-                  className="w-full h-full rounded-lg"
+              <div className="hidden">
+                <Input
+                  id="addImage"
+                  name="images"
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  onChange={handleImagesChange}
                 />
-                <button
-                  className="absolute right-[-8px] top-[-4px] w-7 h-7"
-                  type="button"
-                  onClick={() => handleImageDelete(image)}
-                >
-                  <CancelIcon />
-                </button>
               </div>
+            </button>
+            {Array.from(getValues('images')).map((image) => (
+              <Thumbnial key={image.name} image={image} />
             ))}
           </section>
         </div>
-        <Button
-          isLoading={isLoading}
-          type="submit"
-          variant="main"
-          className="w-full"
-        >
+        <Button type="submit" variant="main" className="w-full">
           {t('register-review-button-text')}
         </Button>
       </form>
