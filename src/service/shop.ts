@@ -1,4 +1,4 @@
-import { RegisterReviewResponse } from 'models/review/response';
+import { RegisterReviewRequest } from 'models/review/request';
 import { ShopRegisterRequest } from 'models/shop/request';
 import {
   ShopResponse,
@@ -46,14 +46,20 @@ export const fetchShopReviewList = async (id: number) => {
   return data;
 };
 
-export const registerReview = async (formData: FormData) => {
-  return ShopService.post<RegisterReviewResponse>(
-    '/v1/shops/shop/review',
-    formData,
-    {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    }
-  );
+export const registerReview = async (
+  registerReviewRequest: RegisterReviewRequest
+) => {
+  const { content, shopId, images } = registerReviewRequest;
+
+  const formData = new FormData();
+
+  formData.append('content', content);
+  formData.append('shopId', shopId.toString());
+  images.forEach((image) => formData.append('image', image));
+
+  return ShopService.post('/v1/shops/shop/review', formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
 };
