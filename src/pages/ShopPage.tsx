@@ -8,6 +8,7 @@ import { useFetchShopReviewList } from 'hooks/api/useFetchShopReviewList';
 import { useGetShopById } from 'hooks/api/useGetShopById';
 import { useGetUserInformation } from 'hooks/api/useGetUserInformation';
 import { ShopReview } from 'models/review';
+import { FetchShopResponse } from 'models/shop/response';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router';
 
@@ -34,14 +35,14 @@ const ShopReviewHeader: React.FC<{ review: ShopReview }> = ({ review }) => {
 const ShopPage: React.FC = () => {
   const navigate = useNavigate();
 
-  const { id } = useParams<{ id?: string }>() ?? {};
+  const { id } = useParams<{ id?: string }>() ?? '-1';
 
   const { data: shop, isLoading: isShopLoading } = useGetShopById(
-    parseInt(id!, 10)
+    parseInt(id ?? '-1', 10)
   );
 
   const { data: reviewList, isLoading: isReviewListLoading } =
-    useFetchShopReviewList(parseInt(id!, 10));
+    useFetchShopReviewList(parseInt(id ?? '-1', 10));
 
   const { data: userInformation } = useGetUserInformation();
 
@@ -62,7 +63,10 @@ const ShopPage: React.FC = () => {
           <LoadingProgressIcon />
         </div>
       ) : (
-        <Shop shop={shop!} review={reviewList?.length ?? 0} />
+        <Shop
+          shop={shop ?? ({} as FetchShopResponse)}
+          review={reviewList?.length ?? 0}
+        />
       )}
 
       <div className="flex justify-between items-center mb-4">

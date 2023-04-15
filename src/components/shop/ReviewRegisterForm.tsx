@@ -1,7 +1,8 @@
-import { ChangeEvent, MouseEvent, useRef, useState } from 'react';
+import { ChangeEvent, MouseEvent, useRef } from 'react';
 import { ReactComponent as CameraIcon } from 'assets/components/Camera.svg';
 import { ReactComponent as CancelIcon } from 'assets/components/Cancel.svg';
 import Button from 'components/base/Button';
+import Input from 'components/base/Input';
 import Typography from 'components/base/Typography';
 import HashtagChip from 'components/HashtagChip';
 import TextArea from 'components/TextArea';
@@ -11,31 +12,12 @@ import { ReviewRegisterForm as ReviewRegisterFormValue } from 'models/review/Rev
 import { FormProvider, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router';
-import Input from 'components/base/Input';
 
 const MAX_IMAGE_COUNT = 5;
 
-const Thumbnial: React.FC<{ image: File }> = ({ image }) => {
-  return (
-    <div className="relative w-[168px] h-[168px]">
-      <img
-        className="w-full h-full rounded-lg"
-        src={URL.createObjectURL(image)}
-        alt=""
-      />
-      <button
-        className="absolute right-[-8px] top-[-4px] w-7 h-7"
-        type="button"
-      >
-        <CancelIcon />
-      </button>
-    </div>
-  );
-};
-
 const ReviewRegisterForm: React.FC = () => {
   const { t } = useTranslation();
-  const { id: shopId } = useParams<{ id: string }>() ?? '';
+  const { id: shopId } = useParams<{ id: string }>() ?? '-1';
 
   const { addToast } = useToast();
 
@@ -84,7 +66,9 @@ const ReviewRegisterForm: React.FC = () => {
     }
   };
 
-  const { mutate: registerReview } = useRegisterReview(parseInt(shopId!, 10));
+  const { mutate: registerReview } = useRegisterReview(
+    parseInt(shopId ?? '-1', 10)
+  );
 
   const onSubmit = async (formValue: ReviewRegisterFormValue) => {
     registerReview(formValue);
@@ -132,7 +116,19 @@ const ReviewRegisterForm: React.FC = () => {
               </div>
             </button>
             {Array.from(getValues('images')).map((image) => (
-              <Thumbnial key={image.name} image={image} />
+              <div key={image.name} className="relative w-[168px] h-[168px]">
+                <img
+                  className="w-full h-full rounded-lg"
+                  src={URL.createObjectURL(image)}
+                  alt=""
+                />
+                <button
+                  className="absolute right-[-8px] top-[-4px] w-7 h-7"
+                  type="button"
+                >
+                  <CancelIcon />
+                </button>
+              </div>
             ))}
           </section>
         </div>
