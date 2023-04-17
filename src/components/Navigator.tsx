@@ -33,13 +33,6 @@ const Navigator: React.FC<NavigatorProps> = (props) => {
 
   return (
     <nav className="absolute bottom-0 flex justify-center w-full z-10 ">
-      <button
-        type="button"
-        className="absolute mb-7 bottom-0 flex justify-center items-center w-13 h-13 rounded-full bg-primary hover:bg-primary-hover drop-shadow"
-        onClick={handleShopRegisterButtonClick}
-      >
-        <AddShopIcon />
-      </button>
       <div className="drop-shadow-md-reverse w-full ">
         <div className="flex justify-center mt-7 w-full h-13.5 z-10">
           <button
@@ -72,6 +65,13 @@ const Navigator: React.FC<NavigatorProps> = (props) => {
           <img className="z-0 mx-auto" alt="하단바" src={NavigatorCurve} />
         </div>
       </div>
+      <button
+        type="button"
+        className="absolute mb-7 bottom-0 flex justify-center items-center w-13 h-13 rounded-full bg-primary hover:bg-primary-hover drop-shadow"
+        onClick={handleShopRegisterButtonClick}
+      >
+        <AddShopIcon />
+      </button>
     </nav>
   );
 };
