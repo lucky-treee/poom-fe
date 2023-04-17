@@ -1,8 +1,7 @@
 import { ChangeEvent, MouseEvent, useRef } from 'react';
 import { ReactComponent as CameraIcon } from 'assets/components/Camera.svg';
-import { ReactComponent as CancelIcon } from 'assets/components/Cancel.svg';
+import { ReactComponent as DeleteImageIcon } from 'assets/components/DeleteImage.svg';
 import Button from 'components/base/Button';
-import Input from 'components/base/Input';
 import Typography from 'components/base/Typography';
 import HashtagChip from 'components/HashtagChip';
 import TextArea from 'components/TextArea';
@@ -42,8 +41,7 @@ const ReviewRegisterForm: React.FC = () => {
   const handleAddImageClick = (e: MouseEvent<HTMLButtonElement>) => {
     prevImages.current = [...getValues('images')];
 
-    if (getValues('images').length >= MAX_IMAGE_COUNT) {
-      e.preventDefault();
+  const images = watch('images');
 
       addToast({ message: t('add-review-image-error-msg'), type: 'error' });
     }
@@ -66,12 +64,10 @@ const ReviewRegisterForm: React.FC = () => {
     }
   };
 
-  const { mutate: registerReview } = useRegisterReview(
-    parseInt(shopId ?? '-1', 10)
-  );
-
-  const onSubmit = async (formValue: ReviewRegisterFormValue) => {
-    registerReview(formValue);
+  const handleDeleteImageButtonClick = (index: number) => {
+    const newImages = [...images];
+    newImages.splice(index, 1);
+    setValue('images', newImages);
   };
 
   return (
@@ -123,10 +119,11 @@ const ReviewRegisterForm: React.FC = () => {
                   alt=""
                 />
                 <button
-                  className="absolute right-[-8px] top-[-4px] w-7 h-7"
+                  className="absolute top-2 right-2"
                   type="button"
+                  onClick={() => handleDeleteImageButtonClick(index)}
                 >
-                  <CancelIcon />
+                  <DeleteImageIcon />
                 </button>
               </div>
             ))}
