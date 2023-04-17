@@ -47,17 +47,19 @@ export const fetchShopReviewList = async (id: number) => {
 };
 
 export const registerReview = async (
+  shopId: number,
   registerReviewRequest: RegisterReviewRequest
 ) => {
-  const { content, shopId, images } = registerReviewRequest;
+  const { content, images } = registerReviewRequest;
 
+  // TODO: Service need to support form data
   const formData = new FormData();
 
   formData.append('content', content);
-  formData.append('shopId', shopId.toString());
+
   images.forEach((image) => formData.append('image', image));
 
-  return ShopService.post('/v1/shops/shop/review', formData, {
+  return ShopService.post(`/v1/shops/${shopId}/review`, formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
     },
