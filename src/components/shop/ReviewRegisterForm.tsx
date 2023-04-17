@@ -1,4 +1,4 @@
-import { ChangeEvent, MouseEvent, useRef } from 'react';
+import { ChangeEventHandler } from 'react';
 import { ReactComponent as CameraIcon } from 'assets/components/Camera.svg';
 import { ReactComponent as DeleteImageIcon } from 'assets/components/DeleteImage.svg';
 import Button from 'components/base/Button';
@@ -16,7 +16,8 @@ const MAX_IMAGE_COUNT = 5;
 
 const ReviewRegisterForm: React.FC = () => {
   const { t } = useTranslation();
-  const { id: shopId } = useParams<{ id: string }>() ?? '-1';
+
+  const { id: shopId } = useParams();
 
   const { addToast } = useToast();
 
@@ -28,39 +29,36 @@ const ReviewRegisterForm: React.FC = () => {
     },
   });
 
-  const { handleSubmit, getValues, setValue } = methods;
+  const { handleSubmit, setValue, watch, register } = methods;
 
-  /**
-   * 해당 변수는 `images`를 `react-hook-form`으로 관리할 경우,
-   * change event의 target.files의 데이터와 항상 동기화되기 때문에
-   * 이미지 첨부에 대한 컴포넌트에 클릭 이벤트가 발생하는 순간 이전에 첨부한 이미지들을 기억하기 위해 선언되었습니다.
-   * `state`가 아닌 `ref`로 관리하게 된 이유는 기억용 데이터의 업데이트가 UI를 다시 렌더링 할 이유가 없다고 생각했기 때문입니다.
-   */
-  const prevImages = useRef<File[]>([]);
+  const { mutate: registerReview } = useRegisterReview(
+    parseInt(shopId ?? '-1', 10)
+  );
 
-  const handleAddImageClick = (e: MouseEvent<HTMLButtonElement>) => {
-    prevImages.current = [...getValues('images')];
+  const onSubmit = async (formValue: ReviewRegisterFormValue) => {
+    registerReview(formValue);
+  };
 
   const images = watch('images');
 
-      addToast({ message: t('add-review-image-error-msg'), type: 'error' });
+  const handleImageInputChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    const { files } = e.target;
+
+    if (!files) {
+      return;
     }
-  };
 
-  const handleImagesChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { files } = event.target;
+    const totalImages = [...images, ...Array.from(files)];
 
-    if (files) {
-      const addableImageCount = MAX_IMAGE_COUNT - prevImages.current.length;
+    if (totalImages.length > MAX_IMAGE_COUNT) {
+      addToast({
+        type: 'error',
+        message: t('add-review-image-error-msg'),
+      });
 
-      if (files.length > addableImageCount) {
-        addToast({ message: t('add-review-image-error-msg'), type: 'error' });
-      }
-
-      setValue('images', [
-        ...prevImages.current,
-        ...Array.from(getValues('images')).slice(0, addableImageCount),
-      ]);
+      setValue('images', totalImages.slice(0, MAX_IMAGE_COUNT));
+    } else {
+      setValue('images', totalImages);
     }
   };
 
@@ -85,34 +83,27 @@ const ReviewRegisterForm: React.FC = () => {
             placeholder={t('register-review-button-text')}
           />
           <HashtagChip hashtag="CLEAN" size="small" className="" />
-          <section className="w-full flex flex-wrap justify-between gap-y-2">
-            <button
-              type="button"
-              className="flex justify-center items-center w-[168px] h-[168px] rounded-lg bg-black/25"
-              onClick={handleAddImageClick}
+          <section className="w-full flex flex-wrap gap-4">
+            <label
+              htmlFor="addImage"
+              className="flex justify-center items-center w-[152px] h-[152px] rounded-lg bg-black/25 flex-col"
             >
-              <label
-                htmlFor="addImage"
-                className="w-full flex flex-col justify-center items-center"
-              >
-                <CameraIcon />
-                <Typography type="caption" className="text-white">
-                  {t('add-review-image')}
-                </Typography>
-              </label>
-              <div className="hidden">
-                <Input
-                  id="addImage"
-                  name="images"
-                  type="file"
-                  accept="image/*"
-                  multiple
-                  onChange={handleImagesChange}
-                />
-              </div>
-            </button>
-            {Array.from(getValues('images')).map((image) => (
-              <div key={image.name} className="relative w-[168px] h-[168px]">
+              <CameraIcon />
+              <Typography type="caption" className="text-white">
+                {t('add-review-image')}
+              </Typography>
+            </label>
+            <input
+              id="addImage"
+              className="hidden"
+              type="file"
+              accept="image/*"
+              multiple
+              {...register('images')}
+              onChange={handleImageInputChange}
+            />
+            {images.map((image, index) => (
+              <div key={image.name} className="relative w-[152px] h-[152px]">
                 <img
                   className="w-full h-full rounded-lg"
                   src={URL.createObjectURL(image)}
