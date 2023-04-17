@@ -1,15 +1,11 @@
-import React from 'react';
 import { RegisterOptions, useFormContext } from 'react-hook-form';
 
-type InputProps<T> = {
+type TextAreaProps<T> = {
   name: string;
   className?: string;
-  accept?: string;
   placeholder?: T;
   defaultValue?: T;
-  type?: React.HTMLInputTypeAttribute;
-  id?: string;
-  multiple?: boolean;
+  rows?: number;
 } & RegisterOptions;
 
 const style = {
@@ -17,17 +13,8 @@ const style = {
   error: 'border-red-500',
 };
 
-function Input<T>(props: InputProps<T>) {
-  const {
-    name,
-    placeholder,
-    type,
-    className,
-    accept,
-    id,
-    multiple,
-    ...registerOptions
-  } = props;
+const TextArea = <T,>(props: TextAreaProps<T>) => {
+  const { name, placeholder, rows, className, ...registerOptions } = props;
 
   const { register, formState, getFieldState } = useFormContext();
 
@@ -35,14 +22,11 @@ function Input<T>(props: InputProps<T>) {
 
   return (
     <div className="flex flex-col w-full">
-      <input
-        className={`border outline-0 w-full px-4 py-3 border-border-gray rounded-md ${
+      <textarea
+        className={`border text-sm outline-0 w-full px-4 py-3 border-border-gray rounded-md ${
           error ? style.error : style.normal
         } ${className}`}
-        id={id}
-        accept={accept}
-        type={type}
-        multiple={multiple}
+        rows={rows}
         placeholder={typeof placeholder === 'string' ? placeholder : undefined}
         {...register(name, registerOptions)}
       />
@@ -51,6 +35,6 @@ function Input<T>(props: InputProps<T>) {
       )}
     </div>
   );
-}
+};
 
-export default Input;
+export default TextArea;

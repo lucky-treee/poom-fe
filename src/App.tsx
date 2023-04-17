@@ -8,6 +8,7 @@ import LoginPage from 'pages/LoginPage';
 import MapPage from 'pages/MapPage';
 import ProfilePage from 'pages/ProfilePage';
 import ReviewManagePage from 'pages/ReviewManagePage';
+import ReviewRegisterPage from 'pages/ReviewRegisterPage';
 import ShopPage from 'pages/ShopPage';
 import ShopRegisterPage from 'pages/ShopRegisterPage';
 import SignUpPage from 'pages/SignUpPage';
@@ -35,6 +36,10 @@ function App() {
           <Route
             path={PathName.REVIEW_MANAGE_PAGE}
             element={<ReviewManagePage />}
+          />
+          <Route
+            path={PathName.REVIEW_REGISTER_PAGE}
+            element={<ReviewRegisterPage />}
           />
           <Route path={PathName.SHOP_PAGE} element={<ShopPage />} />
           <Route
