@@ -10,6 +10,7 @@ type UseRegisterShopOptions = UseMutationOptions<
 
 export const useRegisterShop = (options?: UseRegisterShopOptions) => {
   return useMutation({
+    mutationKey: ['registerShop'],
     mutationFn: ({ name, address, lng, lat, category }: ShopRegisterForm) =>
       registerShop({
         shopName: name,

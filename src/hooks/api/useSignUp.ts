@@ -10,6 +10,7 @@ type UseSignUpOptions = Pick<
 
 const useSignUp = ({ onSuccess }: UseSignUpOptions) => {
   return useMutation({
+    mutationKey: ['signUp'],
     mutationFn: (formValue: SignUpForm) => signUp(formValue),
     onSuccess,
   });
