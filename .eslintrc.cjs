@@ -80,6 +80,7 @@ module.exports = {
       },
     ],
     'no-console': 'error',
+    'react/prop-types': 'off',
     '@typescript-eslint/no-unused-expressions': 'off',
   },
 };

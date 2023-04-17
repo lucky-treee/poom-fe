@@ -10,14 +10,17 @@ import useToast from 'hooks/useToast';
 import { ReviewRegisterForm as ReviewRegisterFormValue } from 'models/review/ReviewRegisterForm';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router';
 
 const MAX_IMAGE_COUNT = 5;
 
-const ReviewRegisterForm: React.FC = () => {
-  const { t } = useTranslation();
+interface ReviewRegisterFormProps {
+  shopId: number;
+}
 
-  const { id: shopId } = useParams();
+const ReviewRegisterForm: React.FC<ReviewRegisterFormProps> = (props) => {
+  const { shopId } = props;
+
+  const { t } = useTranslation();
 
   const { addToast } = useToast();
 
@@ -31,9 +34,7 @@ const ReviewRegisterForm: React.FC = () => {
 
   const { handleSubmit, setValue, watch, register } = methods;
 
-  const { mutate: registerReview } = useRegisterReview(
-    parseInt(shopId ?? '-1', 10)
-  );
+  const { mutate: registerReview } = useRegisterReview(shopId);
 
   const onSubmit = async (formValue: ReviewRegisterFormValue) => {
     registerReview(formValue);
