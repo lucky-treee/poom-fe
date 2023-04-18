@@ -1,5 +1,3 @@
-export type LoginResponse = string;
-
 export type FetchProfileResponse = {
   imageSrc: string;
   email: string;
@@ -8,9 +6,11 @@ export type FetchProfileResponse = {
   favoriteCount: number;
 };
 
-export type KakaoLoginResponse = string;
+export type KakaoLoginResponse = { accessToken: string };
 
 export type SignUpResponse = string;
+
+export type RefreshAccessTokenResponse = { accessToken: string };
 
 export type HashtagOptions = 'GOOD' | 'CLEAN' | 'NICE' | 'CHEAP' | 'QUALITY';
 

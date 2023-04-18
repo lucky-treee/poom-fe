@@ -4,7 +4,7 @@ import ShopMarker from 'components/map/ShopMarker';
 import UserMarker from 'components/map/UserMarker';
 import Navigator from 'components/Navigator';
 import ShopDrawer from 'components/ShopDrawer';
-import { useFetchShopList } from 'hooks/api/useFetchShopList';
+import useFetchShopList from 'hooks/api/useFetchShopList';
 import useThrottledState from 'hooks/useThrottledState';
 import { LocationType } from 'models/Location';
 import { useGeolocated } from 'react-geolocated';
