@@ -61,7 +61,7 @@ export const registerReview = async (
 
   images.forEach((image) => formData.append('image', image));
 
-  return ShopService.post(`/v1/shops/${shopId}/review`, formData, {
+  return ShopService.post(`/v1/shops/${shopId}/review`, formData, undefined, {
     headers: {
       'Content-Type': 'multipart/form-data',
     },
